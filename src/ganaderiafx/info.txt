@@ -1,0 +1,31 @@
+**Bibliotecas externas
+    Agregar jar en carpeta libs, en la raiz del proyecto.
+    Importar al proyecto con ruta RELATIVA.
+**Iconos e imagenes
+    Iconos de botones png de 16x16 con transparencia.
+
+**Clases, Metodos, atributos, etc. 
+    En español
+    Clases pojo o beans, nombre en singular.
+
+**Prefijos nombrado de variables de componentes
+    Label = lbl_
+    TextField, JPasswordField, JTextArea = txt_
+    Button = btn_
+    ScrollPane = sp_
+    MenuBar = mb_
+    Menu = m_
+    MenuItem = mi_
+    Table = tbl_
+    ButtonGroup = bng_
+    RadioButton = rbn_
+    CheckBox = chb_
+    ComboBox = cmb_
+    List = lst_
+    Spinner = spn_
+    ProgressBar = pgb_
+    ToolBar = tbr_
+    Panel = pnl_
+    TabbedPane = tbp_
+    SplitPane = spl_
+    DatePicker = dpk_
