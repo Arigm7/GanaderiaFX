@@ -1,0 +1,11 @@
+Azul 1: #176FA6
+
+Azul 2: #165F8C
+
+Azul 3: #0F3D59
+
+Blanco: #F2F2F2
+
+Gris: #D9D9D9
+
+Negro: #0D0D0D

@@ -1,27 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx;
 
+import java.net.InetAddress;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ganaderiafx.utils.JavaUtils;
 
-/**
- *
- * @author Alex
- */
+
 public class GanaderiaFX extends Application {
+    
+    HashMap<String,Object> context = new HashMap<String,Object> ();
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent login = FXMLLoader.load(getClass().getResource("/ganaderiafx/gui/vista/InicioSesionFXML.fxml"));
         
-        Scene scene = new Scene(root);
+       Scene scene = new Scene(login);
+        
+        this.context.put("ip",InetAddress.getLocalHost());
+        this.context.put("mac",JavaUtils.getMAC());
+        
+        stage.setUserData(this.context);
         
         stage.setScene(scene);
         stage.show();

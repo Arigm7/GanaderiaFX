@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.PrincipalController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Ganado">
+            <items>
+              <MenuItem mnemonicParsing="false" text="AdministrarGanado" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Traspaso">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Lotes" />
+                  <MenuItem mnemonicParsing="false" text="Traspasos" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Movimientos">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Ingresos" />
+                  <MenuItem mnemonicParsing="false" text="Egresos" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Administración">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Usuarios" />
+                  <MenuItem mnemonicParsing="false" text="Catalogos" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

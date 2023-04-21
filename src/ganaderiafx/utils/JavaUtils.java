@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package app.utils;
+
+package ganaderiafx.utils;
 
 import java.io.FileWriter;
 import java.net.InetAddress;
@@ -15,10 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author Frost
- */
+
 public class JavaUtils {
 
     public static String hashString(String base) {

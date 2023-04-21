@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package app.utils;
+
+package ganaderiafx.utils;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Clemente
- */
+
 public class Window {
     public static void close(ActionEvent event){
        //Me devuelve el elemento al que hice click
