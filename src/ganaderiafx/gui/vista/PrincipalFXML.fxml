@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.PrincipalController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -16,10 +15,9 @@
               <MenuItem mnemonicParsing="false" text="AdministrarGanado" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Traspaso">
+          <Menu mnemonicParsing="false" text="Categorias">
             <items>
-              <MenuItem mnemonicParsing="false" text="Lotes" />
-                  <MenuItem mnemonicParsing="false" text="Traspasos" />
+              <MenuItem mnemonicParsing="false" text="Categoria" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Movimientos">
