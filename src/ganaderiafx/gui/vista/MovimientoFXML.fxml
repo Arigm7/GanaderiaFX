@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.MovimientoController">
    <children>
       <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="764.0" style="-fx-background-color: #0F3D59;">
@@ -43,7 +42,7 @@
                </image>
             </ImageView>
             <Label layoutX="516.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nombreUsuario" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+            <Label fx:id="lbl_nomUsuario_movimiento" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
       <SplitPane dividerPositions="0.39204545454545453" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="764.0">

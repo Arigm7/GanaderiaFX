@@ -25,8 +25,6 @@ public class MovimientoController implements Initializable {
     @FXML
     private Button btn_limpiarMovimiento;
     @FXML
-    private Label lbl_nombreUsuario;
-    @FXML
     private Button btn_nuevaIngreso;
     @FXML
     private Button btn_editarIngreso;
@@ -72,6 +70,8 @@ public class MovimientoController implements Initializable {
     private TableColumn<?, ?> tcl_fechaMotificacionEgreso;
     @FXML
     private TableColumn<?, ?> tcl_conceptoEgreso;
+    @FXML
+    private Label lbl_nomUsuario_movimiento;
 
     /**
      * Initializes the controller class.

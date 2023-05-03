@@ -17,8 +17,8 @@
                   <Font name="Berlin Sans FB" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="txt_buscar" layoutX="68.0" layoutY="22.0" prefHeight="29.0" prefWidth="149.0" promptText="Buscar" />
-            <Button fx:id="btn_buscarCatalogo" layoutX="231.0" layoutY="24.0" mnemonicParsing="false" onAction="#buscarCodigo" prefHeight="23.0" prefWidth="92.0" text="Buscar">
+            <TextField fx:id="txt_buscarCatalogo" layoutX="68.0" layoutY="22.0" prefHeight="29.0" prefWidth="149.0" promptText="Buscar" />
+            <Button fx:id="btn_buscarCatalogo" layoutX="231.0" layoutY="24.0" mnemonicParsing="false" onAction="#buscarCatalogo" prefHeight="23.0" prefWidth="92.0" text="Buscar">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -27,7 +27,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_limpiarCatalogo" layoutX="336.0" layoutY="24.0" mnemonicParsing="false" onAction="#limpiar" prefHeight="25.0" prefWidth="92.0" text="Limpiar">
+            <Button fx:id="btn_limpiarCatalogo" layoutX="336.0" layoutY="24.0" mnemonicParsing="false" onAction="#limpiarCatalogo" prefHeight="25.0" prefWidth="92.0" text="Limpiar">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,7 +42,7 @@
                </image>
             </ImageView>
             <Label layoutX="516.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nombreUsuario" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+            <Label fx:id="lbl_nombreUsuarioCatalogo" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
       <SplitPane dividerPositions="0.48484848484848486" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="764.0">

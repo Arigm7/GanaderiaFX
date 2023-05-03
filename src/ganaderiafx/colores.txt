@@ -9,3 +9,18 @@ Blanco: #F2F2F2
 Gris: #D9D9D9
 
 Negro: #0D0D0D
+
+Naranja: #E8A12D
+
+Naranja claro: #FDC982
+
+Naranja boton: #E39B39 
+
+Rojo boton:#EC7063 
+
+Verde: #3D8E30
+
+Verde claro: #9EF885
+
+Verde boton: #317B1D
+

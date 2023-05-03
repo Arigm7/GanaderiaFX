@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.EditarEgresoController">
+   <children>
+      <Pane layoutY="70.0" prefHeight="43.0" prefWidth="527.0" style="-fx-background-color: #FDC982;">
+         <children>
+            <Label layoutX="20.0" layoutY="8.0" prefHeight="28.0" prefWidth="159.0" text="Editar egreso">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="117.0" prefHeight="284.0" prefWidth="527.0">
+         <children>
+            <Label layoutX="59.0" layoutY="43.0" text="Motivo:" />
+            <Label layoutX="60.0" layoutY="106.0" text="Observaciones:" />
+            <Label layoutX="305.0" layoutY="43.0" text="Fecha:" />
+            <Label layoutX="305.0" layoutY="106.0" text="Concepto:" />
+            <TextField fx:id="txt_motivoEditar" layoutX="60.0" layoutY="73.0" />
+            <TextField fx:id="txt_conceptoEditar" layoutX="305.0" layoutY="132.0" />
+            <Button fx:id="btn_editarEgreso" layoutX="305.0" layoutY="192.0" mnemonicParsing="false" onAction="#editarEgreso" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #E39B39;" text="Editar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_cancelarEgreso" layoutX="413.0" layoutY="193.0" mnemonicParsing="false" onAction="#cancelarEgreso" style="-fx-background-color: #EC7063;" text="Cancelar" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/delete.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <DatePicker fx:id="dpk_fechaModificacion" layoutX="305.0" layoutY="73.0" />
+            <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="112.0" prefWidth="210.0" />
+            <Label layoutX="59.0" layoutY="6.0" text="ID:" />
+            <TextField fx:id="txt_idEgreso" disable="true" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="113.0" />
+         </children>
+      </Pane>
+      <Pane prefHeight="70.0" prefWidth="527.0" style="-fx-background-color: #E8A12D;">
+         <children>
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="470.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="293.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
+            <Label fx:id="lbl_nomUsuario_EditarEgreso" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+            <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

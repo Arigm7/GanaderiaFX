@@ -21,13 +21,9 @@ public class CatalogoController implements Initializable {
     @FXML
     private Pane pnl_busqueda;
     @FXML
-    private TextField txt_buscar;
-    @FXML
     private Button btn_buscarCatalogo;
     @FXML
     private Button btn_limpiarCatalogo;
-    @FXML
-    private Label lbl_nombreUsuario;
     @FXML
     private Button btn_nuevaCatalogo;
     @FXML
@@ -62,6 +58,10 @@ public class CatalogoController implements Initializable {
     private TableColumn<?, ?> tcl_nombre;
     @FXML
     private TableColumn<?, ?> tcl_estatus;
+    @FXML
+    private TextField txt_buscarCatalogo;
+    @FXML
+    private Label lbl_nombreUsuarioCatalogo;
 
     /**
      * Initializes the controller class.
@@ -71,13 +71,6 @@ public class CatalogoController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void buscarCodigo(ActionEvent event) {
-    }
-
-    @FXML
-    private void limpiar(ActionEvent event) {
-    }
 
     @FXML
     private void nuevaCatalogo(ActionEvent event) {
@@ -109,6 +102,14 @@ public class CatalogoController implements Initializable {
 
     @FXML
     private void desactivarRol(ActionEvent event) {
+    }
+
+    @FXML
+    private void buscarCatalogo(ActionEvent event) {
+    }
+
+    @FXML
+    private void limpiarCatalogo(ActionEvent event) {
     }
     
 }

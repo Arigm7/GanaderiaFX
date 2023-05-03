@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RazaController">
+   <children>
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="764.0" style="-fx-background-color: #0F3D59;">
+         <children>
+            <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_buscarRaza" layoutX="68.0" layoutY="22.0" prefHeight="29.0" prefWidth="149.0" promptText="Buscar" />
+            <Button fx:id="btn_buscarRaza" layoutX="231.0" layoutY="24.0" mnemonicParsing="false" onAction="#buscarRaza" prefHeight="23.0" prefWidth="92.0" text="Buscar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_limpiarRaza" layoutX="336.0" layoutY="24.0" mnemonicParsing="false" onAction="#limpiarRaza" prefHeight="25.0" prefWidth="92.0" text="Limpiar">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="700.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="516.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
+            <Label fx:id="lbl_nombreUsuarioRaza" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="762.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <Button fx:id="btn_nuevaRaza" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaRaza" prefHeight="25.0" prefWidth="92.0" text="Nueva">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_editarRaza" layoutX="121.0" layoutY="35.0" mnemonicParsing="false" onAction="#editarRaza" prefHeight="25.0" prefWidth="92.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_activarRaza" layoutX="230.0" layoutY="35.0" mnemonicParsing="false" onAction="#activarRaza" prefHeight="25.0" prefWidth="92.0" text="Activar">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/alta.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_desactivarRaza" layoutX="341.0" layoutY="35.0" mnemonicParsing="false" onAction="#desactivarRaza" prefHeight="25.0" prefWidth="92.0" text="Desactivar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/down.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Razas" wrappingWidth="61.689453125">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TableView fx:id="tbl_raza" layoutX="1.0" layoutY="140.0" prefHeight="464.0" prefWidth="764.0">
+        <columns>
+          <TableColumn fx:id="tcl_idRaza" prefWidth="124.0" text="Id Rza" />
+          <TableColumn fx:id="tcl_nombreRaza" prefWidth="456.0" text="Nombre" />
+            <TableColumn fx:id="tcl_estatusRaza" prefWidth="183.0" text="Estatus" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

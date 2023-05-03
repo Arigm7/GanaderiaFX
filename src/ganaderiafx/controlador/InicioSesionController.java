@@ -11,6 +11,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ganaderiafx.utils.Window;
 import ganaderiafx.api.requests.Requests;
+import ganaderiafx.modelo.pojos.Usuario;
+import ganaderiafx.utils.JavaUtils;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
@@ -42,7 +46,7 @@ public class InicioSesionController implements Initializable {
     }    
 
     @FXML
-    private void iniciarSesion(ActionEvent event) {
+    private void iniciarSesion(ActionEvent event) throws UnknownHostException {
         
         if(this.validar()){
             
@@ -60,11 +64,31 @@ public class InicioSesionController implements Initializable {
                 System.out.println("Data;"+data);
                 
                 JSONObject dataJson = new JSONObject(data); //convertimos el string en objeto json
-                JSONObject respuestaJson = new JSONObject(dataJson.get("respuesta").toString());
-                System.out.println(respuestaJson.getString("nombre"));
-                System.out.println(respuestaJson.get("apellidoPaterno").toString());
-                //System.out.println(dataJson.get("respuesta"));
-                //System.out.println(dataJson.get("error"));
+                
+                if((Boolean)dataJson.get("error") == false){ //validar si encontro algo en la base de datos
+                    
+                    JSONObject respuestaJson = new JSONObject(dataJson.get("respuesta").toString());
+                    
+                    Usuario u = new Usuario();
+                    
+                    u.setIdUsuario(respuestaJson.getInt("idUsuario"));              //los parametros que necesites 
+                    u.setUsuario(respuestaJson.getString("usuario"));
+                   // u.setIdRol(respuestaJson.getInt("idRol"));
+                    
+                    HashMap<String,Object> context = new HashMap<String,Object> ();             //se agregro
+                    context.put("mac",JavaUtils.getMAC());
+                    context.put("usuario", u);                                                  //se inserto el objeto
+                    context.put("ip",InetAddress.getLocalHost());
+                    
+                    //System.out.println(respuestaJson);
+                    //System.out.println(respuestaJson.getString("nombre"));
+                    //System.out.println(respuestaJson.getInt("idRol"));
+                    //this.lbl_mensaje.setText(respuestaJson.getString("nombre"));  ---------------------> //para ponerlo en un label o campo de texto  
+                }else{
+                    //System.out.print(dataJson.get("mensaje").toString());
+                    this.lbl_mensaje.setText(dataJson.getString("mensaje"));
+                    
+                }
                 
             } catch (JSONException ex) {
                 Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
