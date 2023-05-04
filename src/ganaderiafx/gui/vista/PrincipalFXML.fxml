@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.PrincipalController">
+<BorderPane fx:id="pnl_principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="850.0" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.PrincipalController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Ganado">
             <items>
-              <MenuItem mnemonicParsing="false" text="AdministrarGanado" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Categorias">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Categoria" />
+              <MenuItem fx:id="mi_raza" mnemonicParsing="false" onAction="#abrirRaza" text="Raza" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Movimientos">
             <items>
-              <MenuItem mnemonicParsing="false" text="Ingresos" />
-                  <MenuItem mnemonicParsing="false" text="Egresos" />
+              <MenuItem fx:id="mi_IngresoEgreso" mnemonicParsing="false" onAction="#abrirlIngresoEgreso" text="Ingresos y Egresos" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Administración">
               <items>
-                <MenuItem mnemonicParsing="false" text="Usuarios" />
-                  <MenuItem mnemonicParsing="false" text="Catalogos" />
+                <MenuItem fx:id="mi_usuario" mnemonicParsing="false" onAction="#abrirlUsuario" text="Usuarios" />
+                  <MenuItem fx:id="mi_catalogos" mnemonicParsing="false" onAction="#abrirCatalogo" text="Catalogos" />
               </items>
             </Menu>
         </menus>
       </MenuBar>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0F3D59;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="247.0" layoutY="44.0" text="BIENVENIDO" textFill="WHITE">
+               <font>
+                  <Font size="64.0" />
+               </font></Label>
+            <Label layoutX="180.0" layoutY="143.0" text="Sistema de Administración de Villa Ganadera" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="331.0" fitWidth="411.0" layoutX="259.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

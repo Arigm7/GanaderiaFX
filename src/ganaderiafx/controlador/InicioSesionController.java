@@ -1,6 +1,7 @@
 
 package ganaderiafx.controlador;
 
+import com.google.gson.Gson;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,13 +14,19 @@ import ganaderiafx.utils.Window;
 import ganaderiafx.api.requests.Requests;
 import ganaderiafx.modelo.pojos.Usuario;
 import ganaderiafx.utils.JavaUtils;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,51 +59,72 @@ public class InicioSesionController implements Initializable {
             
             try {
                 this.lbl_mensaje.setText(""); //borrar la etiqueta
-                System.out.print(Window.getStageByEvent(event).getUserData());//mostrar la mac y ip
                 
                 String data ="";
                 
                 HashMap<String,Object> params = new LinkedHashMap<>();
                 params.put("usuario", this.txt_usuario.getText());
                 params.put("password", this.txt_password.getText());
+                
                 data = Requests.post("/sesion/login/", params);
                 
-                System.out.println("Data;"+data);
+                if(!data.isEmpty()){
+                    System.out.println("Data;"+data);
                 
-                JSONObject dataJson = new JSONObject(data); //convertimos el string en objeto json
-                
-                if((Boolean)dataJson.get("error") == false){ //validar si encontro algo en la base de datos
-                    
-                    JSONObject respuestaJson = new JSONObject(dataJson.get("respuesta").toString());
-                    
-                    Usuario u = new Usuario();
-                    
-                    u.setIdUsuario(respuestaJson.getInt("idUsuario"));              //los parametros que necesites 
-                    u.setUsuario(respuestaJson.getString("usuario"));
-                   // u.setIdRol(respuestaJson.getInt("idRol"));
-                    
-                    HashMap<String,Object> context = new HashMap<String,Object> ();             //se agregro
-                    context.put("mac",JavaUtils.getMAC());
-                    context.put("usuario", u);                                                  //se inserto el objeto
-                    context.put("ip",InetAddress.getLocalHost());
-                    
-                    //System.out.println(respuestaJson);
-                    //System.out.println(respuestaJson.getString("nombre"));
-                    //System.out.println(respuestaJson.getInt("idRol"));
-                    //this.lbl_mensaje.setText(respuestaJson.getString("nombre"));  ---------------------> //para ponerlo en un label o campo de texto  
+                    JSONObject dataJson = new JSONObject(data); //convertimos el string en objeto json
+
+                    if((Boolean)dataJson.get("error") == false){ //validar si encontro algo en la base de datos
+
+                        Stage stage = Window.getStageByEvent(event);
+                        
+                        Gson gson = new Gson();
+                        Usuario user = gson.fromJson(dataJson.get("respuesta").toString(), Usuario.class); //guarda la informacion del usuario que inicio sesion
+                        
+                        HashMap<String,Object> context = new HashMap<String,Object> ();             //se agregro
+                        context.put("mac",JavaUtils.getMAC());
+                        context.put("usuario", user);                                                  //se inserto el objeto
+                        context.put("ip",InetAddress.getLocalHost());
+
+                        //Se carga la nueva interfaz fxml
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/PrincipalFXML.fxml"));
+
+                        //Se obtiene el nodo padre que contienes los nodos secundarios de la interfaz fxml
+                        Parent principal = loader.load();
+
+                        //Se obtiene la instancia del controlador asociado a la interfaz fxml
+                        PrincipalController ctrl = loader.getController();
+
+                        //setData es un metodo que esta declarado en la clase PrincipalController
+                        //Al metodo setData se le pasa como parametro el contexto
+                        ctrl.setData(context);
+                        
+                        //Se crea una nueva escena con la interfaz principal.fxml
+                        Scene scene = new Scene(principal);
+
+                        //Insertamos la nueva escena en el escenario actual
+                        //Se puede crear otro escenario para insertar la nueva escena (opcional)
+                        stage.setScene(scene);
+
+                        //A la nueva escena se le agrega un titulo
+                        stage.setTitle("GANADERIA (Sistema de Administración de Villa Ganadera)");
+                        //Propiedad para no maximizar la escena
+                        stage.setResizable(false);
+                        stage.getIcons().add(new Image("/ganaderiafx/gui/img/logo.png"));
+                        //Se muestra la escena que previamente se creo
+                        stage.show();
+                    }else{
+                        this.lbl_mensaje.setText(dataJson.getString("mensaje"));
+                    }
                 }else{
-                    //System.out.print(dataJson.get("mensaje").toString());
-                    this.lbl_mensaje.setText(dataJson.getString("mensaje"));
-                    
+                    this.lbl_mensaje.setText("Intentelo mas tarde");
                 }
-                
             } catch (JSONException ex) {
                 Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            } catch (IOException ex) {
+                Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+            }  
         }else{
-            this.lbl_mensaje.setText("El usuario y contraseña son requeridos...");
-            
+            this.lbl_mensaje.setText("El usuario y contraseña son requeridos...");  
         }
     }
 

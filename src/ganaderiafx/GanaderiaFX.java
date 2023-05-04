@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ganaderiafx.utils.JavaUtils;
+import javafx.scene.image.Image;
 
 
 public class GanaderiaFX extends Application {
@@ -20,7 +21,8 @@ public class GanaderiaFX extends Application {
         Parent login = FXMLLoader.load(getClass().getResource("/ganaderiafx/gui/vista/InicioSesionFXML.fxml"));
         
         Scene scene = new Scene(login);
-
+        stage.setTitle("GANADERIA (Sistema de Administración de Villa Ganadera)");
+        stage.getIcons().add(new Image("/ganaderiafx/gui/img/logo.png"));
         stage.setScene(scene);
         stage.show();
     }

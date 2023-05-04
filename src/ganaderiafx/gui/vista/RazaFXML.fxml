@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RazaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RazaController">
    <children>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="764.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -36,16 +36,16 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="700.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="793.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="516.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nombreUsuarioRaza" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+            <Label layoutX="611.0" layoutY="26.0" text="Usuario:" textFill="WHITE" />
+            <Label fx:id="lbl_nombreUsuarioRaza" layoutX="660.0" layoutY="26.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="762.0" style="-fx-background-color: #D9D9D9;">
+      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #D9D9D9;">
          <children>
             <Button fx:id="btn_nuevaRaza" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaRaza" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                <graphic>
@@ -90,11 +90,11 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="tbl_raza" layoutX="1.0" layoutY="140.0" prefHeight="464.0" prefWidth="764.0">
+      <TableView fx:id="tbl_raza" layoutX="1.0" layoutY="140.0" prefHeight="464.0" prefWidth="850.0">
         <columns>
           <TableColumn fx:id="tcl_idRaza" prefWidth="124.0" text="Id Rza" />
-          <TableColumn fx:id="tcl_nombreRaza" prefWidth="456.0" text="Nombre" />
-            <TableColumn fx:id="tcl_estatusRaza" prefWidth="183.0" text="Estatus" />
+          <TableColumn fx:id="tcl_nombreRaza" prefWidth="392.66668701171875" text="Nombre" />
+            <TableColumn fx:id="tcl_estatusRaza" prefWidth="331.33331298828125" text="Estatus" />
         </columns>
       </TableView>
    </children>

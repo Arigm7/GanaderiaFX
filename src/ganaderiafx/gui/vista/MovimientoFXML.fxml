@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.MovimientoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.MovimientoController">
    <children>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="764.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -36,20 +36,20 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="700.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="793.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="516.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_movimiento" layoutX="567.0" layoutY="29.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+            <Label layoutX="611.0" layoutY="28.0" text="Usuario:" textFill="WHITE" />
+            <Label fx:id="lbl_nomUsuario_movimiento" layoutX="661.0" layoutY="28.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <SplitPane dividerPositions="0.39204545454545453" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="764.0">
+      <SplitPane dividerPositions="0.3996212121212121" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="850.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane prefHeight="70.0" prefWidth="762.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane prefHeight="70.0" prefWidth="848.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaIngreso" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaIngreso" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -94,22 +94,22 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_ingresos" layoutY="70.0" prefHeight="453.0" prefWidth="762.0">
+                  <TableView fx:id="tbl_ingresos" layoutY="70.0" prefHeight="453.0" prefWidth="848.0">
                     <columns>
                       <TableColumn fx:id="tcl_idIngreso" prefWidth="75.0" text="Id Ingreso" />
-                      <TableColumn fx:id="tcl_cantidadIngreso" prefWidth="75.0" text="Cantidad" />
-                        <TableColumn fx:id="tcl_observacionesIngreso" prefWidth="121.0" text="Observaciones" />
-                        <TableColumn fx:id="tcl_fechaCreacionIngreso" prefWidth="110.0" text="Fecha de creación" />
-                        <TableColumn fx:id="tcl_fechaModificacionIngreso" prefWidth="137.0" text="Fecha de modificación" />
-                        <TableColumn fx:id="tcl_catalogoIngreso" prefWidth="89.0" text="Catalogo" />
-                        <TableColumn fx:id="tcl_conceptoIngreso" prefWidth="154.0" text="Concepto" />
+                      <TableColumn fx:id="tcl_cantidadIngreso" prefWidth="111.0" text="Cantidad" />
+                        <TableColumn fx:id="tcl_observacionesIngreso" prefWidth="177.0" text="Observaciones" />
+                        <TableColumn fx:id="tcl_fechaCreacionIngreso" prefWidth="141.0" text="Fecha de creación" />
+                        <TableColumn fx:id="tcl_fechaModificacionIngreso" prefWidth="141.33331298828125" text="Fecha de modificación" />
+                        <TableColumn fx:id="tcl_catalogoIngreso" prefWidth="86.3333740234375" text="Catalogo" />
+                        <TableColumn fx:id="tcl_conceptoIngreso" prefWidth="119.0" text="Concepto" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane prefHeight="70.0" prefWidth="762.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane prefHeight="70.0" prefWidth="848.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaEgreso" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaEgreso" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -154,15 +154,15 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_egreso" layoutY="70.0" prefHeight="453.0" prefWidth="764.0">
+                  <TableView fx:id="tbl_egreso" layoutY="70.0" prefHeight="453.0" prefWidth="848.0">
                     <columns>
                       <TableColumn fx:id="tcl_idEgreso" prefWidth="75.0" text="Id Egreso" />
-                      <TableColumn fx:id="tcl_motivoEgreso" prefWidth="82.0" text="Motivo" />
-                        <TableColumn fx:id="tcl_observacionesEgreso" prefWidth="113.0" text="Obsercaciones" />
-                        <TableColumn fx:id="tcl_fechaCreacionEgreso" prefWidth="120.0" text="Fecha de creación" />
-                        <TableColumn fx:id="tcl_fechaMotificacionEgreso" prefWidth="145.0" text="Fecha de modificación" />
-                        <TableColumn prefWidth="92.0" text="Catalogo" />
-                        <TableColumn fx:id="tcl_conceptoEgreso" prefWidth="135.0" text="Concepto" />
+                      <TableColumn fx:id="tcl_motivoEgreso" prefWidth="126.0" text="Motivo" />
+                        <TableColumn fx:id="tcl_observacionesEgreso" prefWidth="160.0" text="Obsercaciones" />
+                        <TableColumn fx:id="tcl_fechaCreacionEgreso" prefWidth="134.33334350585938" text="Fecha de creación" />
+                        <TableColumn fx:id="tcl_fechaMotificacionEgreso" prefWidth="155.33334350585938" text="Fecha de modificación" />
+                        <TableColumn prefWidth="82.66668701171875" text="Catalogo" />
+                        <TableColumn fx:id="tcl_conceptoEgreso" prefWidth="119.0" text="Concepto" />
                     </columns>
                   </TableView>
                </children>
