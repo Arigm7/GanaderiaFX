@@ -1,6 +1,8 @@
 
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Usuario;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -36,14 +38,17 @@ public class RegistrarUsuarioController implements Initializable {
     @FXML
     private Label lbl_nomUsuario_RegistrarUsuario;
 
-    /**
-     * Initializes the controller class.
-     */
+    Usuario usuario = null;                            
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
+    public void setData(Usuario usuario){  
+        this.usuario=usuario;
+    }
+    
     @FXML
     private void rolRegistrar(ActionEvent event) {
     }
@@ -54,6 +59,6 @@ public class RegistrarUsuarioController implements Initializable {
 
     @FXML
     private void cancelarRegistro(ActionEvent event) {
+         Window.close(event);
     }
-    
 }

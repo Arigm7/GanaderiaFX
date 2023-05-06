@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -44,9 +45,7 @@ public class InicioSesionController implements Initializable {
     @FXML
     private Label lbl_mensaje;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -54,11 +53,9 @@ public class InicioSesionController implements Initializable {
 
     @FXML
     private void iniciarSesion(ActionEvent event) throws UnknownHostException {
-        
-        if(this.validar()){
-            
+        if(this.validar()){ 
             try {
-                this.lbl_mensaje.setText(""); //borrar la etiqueta
+                this.lbl_mensaje.setText(""); 
                 
                 String data ="";
                 
@@ -85,33 +82,29 @@ public class InicioSesionController implements Initializable {
                         context.put("usuario", user);                                                  //se inserto el objeto
                         context.put("ip",InetAddress.getLocalHost());
 
-                        //Se carga la nueva interfaz fxml
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/PrincipalFXML.fxml"));
+                        if(user.getIdRol() == 201){
+                            
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/PrincipalFXML.fxml"));
+                            
+                            Parent principal = loader.load();
+                            
+                            PrincipalController ctrl = loader.getController();
+                            ctrl.setData(context);
+                            
+                            Scene scene = new Scene(principal);
 
-                        //Se obtiene el nodo padre que contienes los nodos secundarios de la interfaz fxml
-                        Parent principal = loader.load();
-
-                        //Se obtiene la instancia del controlador asociado a la interfaz fxml
-                        PrincipalController ctrl = loader.getController();
-
-                        //setData es un metodo que esta declarado en la clase PrincipalController
-                        //Al metodo setData se le pasa como parametro el contexto
-                        ctrl.setData(context);
-                        
-                        //Se crea una nueva escena con la interfaz principal.fxml
-                        Scene scene = new Scene(principal);
-
-                        //Insertamos la nueva escena en el escenario actual
-                        //Se puede crear otro escenario para insertar la nueva escena (opcional)
-                        stage.setScene(scene);
-
-                        //A la nueva escena se le agrega un titulo
-                        stage.setTitle("GANADERIA (Sistema de Administración de Villa Ganadera)");
-                        //Propiedad para no maximizar la escena
-                        stage.setResizable(false);
-                        stage.getIcons().add(new Image("/ganaderiafx/gui/img/logo.png"));
-                        //Se muestra la escena que previamente se creo
-                        stage.show();
+                            stage.setScene(scene);
+                            stage.setTitle("GANADERIA (Sistema de Administración de Villa Ganadera)");
+                            stage.setResizable(false);
+                            stage.getIcons().add(new Image("/ganaderiafx/gui/img/logo.png"));
+                            stage.show();
+                        }else{
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Advertencia");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Usuario no AUTORIZADO...");
+                            alert.showAndWait();
+                        }
                     }else{
                         this.lbl_mensaje.setText(dataJson.getString("mensaje"));
                     }
@@ -134,14 +127,10 @@ public class InicioSesionController implements Initializable {
     }
     
     private boolean validar(){
-        
         boolean valido = false;
-        
         if(!this.txt_usuario.getText().isEmpty() && !this.txt_password.getText().isEmpty()){
             valido= true;
         }
-        
         return valido;
     }
-    
 }

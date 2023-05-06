@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.CatalogoConcepto;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,11 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author Alex
- */
+
 public class RegistrarCatalogoController implements Initializable {
 
     @FXML
@@ -33,20 +27,24 @@ public class RegistrarCatalogoController implements Initializable {
     @FXML
     private ComboBox<?> cmb_catalogoRegistrar;
 
-    /**
-     * Initializes the controller class.
-     */
+    CatalogoConcepto catalogo = null;
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
+    public void setData(CatalogoConcepto catalogo){  
+        this.catalogo=catalogo;   
+    }
+        
     @FXML
     private void registrarCatalogo(ActionEvent event) {
     }
 
     @FXML
     private void cancelarRegistro(ActionEvent event) {
+        Window.close(event);
     }
 
     @FXML

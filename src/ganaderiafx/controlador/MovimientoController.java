@@ -1,7 +1,9 @@
 
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Ingreso;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,21 +35,21 @@ public class MovimientoController implements Initializable {
     @FXML
     private Button btn_desactivarIngresos;
     @FXML
-    private TableView<?> tbl_ingresos;
+    private TableView<Ingreso> tbl_ingresos;
     @FXML
-    private TableColumn<?, ?> tcl_idIngreso;
+    private TableColumn<Ingreso, Integer> tcl_idIngreso;
     @FXML
-    private TableColumn<?, ?> tcl_cantidadIngreso;
+    private TableColumn<Ingreso, Integer> tcl_cantidadIngreso;
     @FXML
-    private TableColumn<?, ?> tcl_observacionesIngreso;
+    private TableColumn<Ingreso, String> tcl_observacionesIngreso;
     @FXML
-    private TableColumn<?, ?> tcl_fechaCreacionIngreso;
+    private TableColumn<Ingreso, Date> tcl_fechaCreacionIngreso;
     @FXML
-    private TableColumn<?, ?> tcl_fechaModificacionIngreso;
+    private TableColumn<Ingreso, Date> tcl_fechaModificacionIngreso;
     @FXML
-    private TableColumn<?, ?> tcl_catalogoIngreso;
+    private TableColumn<Ingreso, ?> tcl_catalogoIngreso;                            //FALTAAAAAAAAA
     @FXML
-    private TableColumn<?, ?> tcl_conceptoIngreso;
+    private TableColumn<Ingreso, String> tcl_conceptoIngreso;                       //FALTAAAAAAAAA
     @FXML
     private Button btn_nuevaEgreso;
     @FXML
@@ -73,9 +75,8 @@ public class MovimientoController implements Initializable {
     @FXML
     private Label lbl_nomUsuario_movimiento;
 
-    /**
-     * Initializes the controller class.
-     */
+    Ingreso ingreso = null;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

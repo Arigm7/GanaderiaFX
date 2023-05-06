@@ -1,6 +1,7 @@
 
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -29,78 +30,65 @@ public class PrincipalController implements Initializable {
     @FXML
     private MenuItem mi_raza;
 
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
-    public void setData(HashMap<String,Object> context){          //crear este metodo en todos los controladores
-        
+    public void setData(HashMap<String,Object> context){                  
         System.out.print(context);
     }
 
     @FXML
     private void abrirlIngresoEgreso(ActionEvent event) {
-        try{
-            
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/MovimientoFXML.fxml"));
-            
+
             Parent principal = loader.load();
-            
+
             pnl_principal.setCenter(principal);
- 
-        }catch(IOException ex){
+        } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
 
     @FXML
     private void abrirlUsuario(ActionEvent event) {
          try{
-            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/UsuarioFXML.fxml"));
             
             Parent principal = loader.load();
             
             pnl_principal.setCenter(principal);
- 
         }catch(IOException ex){
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
 
     @FXML
     private void abrirCatalogo(ActionEvent event) {
-        try{
-            
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/CatalogoFXML.fxml"));
-            
+
             Parent principal = loader.load();
-            
+
             pnl_principal.setCenter(principal);
- 
-        }catch(IOException ex){
+        } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
 
     @FXML
     private void abrirRaza(ActionEvent event) {
-        try{
-            
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/RazaFXML.fxml"));
-            
+
             Parent principal = loader.load();
-            
+
             pnl_principal.setCenter(principal);
- 
-        }catch(IOException ex){
+        } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
     }
 }

@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Raza;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,11 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-/**
- * FXML Controller class
- *
- * @author Alex
- */
+
 public class EditarRazaController implements Initializable {
 
     @FXML
@@ -35,13 +29,19 @@ public class EditarRazaController implements Initializable {
     @FXML
     private Button btn_cancelarEditar;
 
-    /**
-     * Initializes the controller class.
-     */
+    Raza raza = null;                            
+    Boolean isnew=false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    
+     public void setData(Raza raza, Boolean isnew){
+        this.raza=raza;
+        this.isnew=isnew;
+        this.cargarRaza();
+    }
 
     @FXML
     private void editarRaza(ActionEvent event) {
@@ -49,6 +49,12 @@ public class EditarRazaController implements Initializable {
 
     @FXML
     private void cancelarEditar(ActionEvent event) {
+        Window.close(event);
+        this.cargarRaza();
     }
     
+    public void cargarRaza(){
+        this.txt_nombreRazaEditar.setText(raza.getNombre());
+        this.txt_estatusRazaEditar.setText(raza.getEstatus());
+    }
 }

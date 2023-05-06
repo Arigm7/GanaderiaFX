@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Rol;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,11 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author Alex
- */
+
 public class RegistrarRolController implements Initializable {
 
     @FXML
@@ -32,20 +26,24 @@ public class RegistrarRolController implements Initializable {
     @FXML
     private Label lbl_nomUsuario_RegistrarRol;
 
-    /**
-     * Initializes the controller class.
-     */
+    Rol rol = null;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
+    public void setData(Rol rol){  
+        this.rol=rol;   
+    }
+    
     @FXML
     private void registrarRol(ActionEvent event) {
     }
 
     @FXML
     private void cancelarRegistro(ActionEvent event) {
+        Window.close(event);
     }
     
 }

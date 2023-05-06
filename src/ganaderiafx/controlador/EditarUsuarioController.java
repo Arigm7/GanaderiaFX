@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Usuario;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,11 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-/**
- * FXML Controller class
- *
- * @author Alex
- */
 public class EditarUsuarioController implements Initializable {
 
     @FXML
@@ -46,14 +39,20 @@ public class EditarUsuarioController implements Initializable {
     @FXML
     private Label lbl_nombreUsuarioEditar;
 
-    /**
-     * Initializes the controller class.
-     */
+    Usuario usuario = null;                            
+    Boolean isnew=false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    public void setData(Usuario usuario, Boolean isnew){ 
+        this.usuario=usuario;
+        this.isnew=isnew;
+        this.cargarUsuario();
+    }
+    
     @FXML
     private void rolEditar(ActionEvent event) {
     }
@@ -64,6 +63,31 @@ public class EditarUsuarioController implements Initializable {
 
     @FXML
     private void cancelarEditar(ActionEvent event) {
+         Window.close(event);
+         this.cargarUsuario();
     }
     
+    public void cargarUsuario(){
+        
+        lbl_nombreUsuarioEditar.setText(usuario.getNombre());
+        
+        if(usuario.getIdRol()==201){
+            this.txt_nombreEditar.setText(usuario.getNombre());
+            this.txt_apellidoPaternoEditar.setText(usuario.getApellidoPaterno());
+            this.txt_apellidoMaternoEditar.setText(usuario.getApellidoMaterno());
+            this.txt_usuarioEditar.setText(usuario.getUsuario());
+            //this.txt_passwordEditar.setText(usuario.getPassword());
+            this.txt_estatusEditar.setText(usuario.getEstatus());
+            
+        }else{
+            this.txt_nombreEditar.setText(usuario.getNombre());
+            this.txt_apellidoPaternoEditar.setText(usuario.getApellidoPaterno());
+            this.txt_apellidoMaternoEditar.setText(usuario.getApellidoMaterno());
+            this.txt_usuarioEditar.setText(usuario.getUsuario());
+            //this.txt_passwordEditar.setText(usuario.getPassword());
+            this.txt_estatusEditar.setText(usuario.getEstatus());
+        }
+        
+        
+    }
 }

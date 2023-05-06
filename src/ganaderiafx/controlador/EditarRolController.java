@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Rol;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,11 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-/**
- * FXML Controller class
- *
- * @author Alex
- */
+
 public class EditarRolController implements Initializable {
 
     @FXML
@@ -35,13 +29,19 @@ public class EditarRolController implements Initializable {
     @FXML
     private Label lbl_nomUsuario_EditarRol;
 
-    /**
-     * Initializes the controller class.
-     */
+    Rol rol = null;
+    Boolean isnew=false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setData(Rol rol, Boolean isnew){  
+        this.rol=rol;
+        this.isnew=isnew;
+        this.cargarRol();
+    }
 
     @FXML
     private void editarRol(ActionEvent event) {
@@ -49,6 +49,13 @@ public class EditarRolController implements Initializable {
 
     @FXML
     private void cancelarEditar(ActionEvent event) {
+        Window.close(event);
     }
     
+    public void cargarRol(){
+        
+        this.txt_nombreRolEditar.setText(rol.getNombre());
+        this.txt_estatusRolEditar.setText(rol.getEstatus());
+
+    }
 }
