@@ -5,6 +5,8 @@
  */
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Ingreso;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -34,10 +36,11 @@ public class EditarIngresoController implements Initializable {
     @FXML
     private Button btn_cancelarIngreso;
     @FXML
-    private DatePicker dpk_fechaModificacion;
-    @FXML
     private TextArea txt_observacionesEditar;
 
+    Ingreso ingreso = null;
+    Boolean isnew=false;
+    String cantidad="";
     /**
      * Initializes the controller class.
      */
@@ -45,6 +48,12 @@ public class EditarIngresoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setData(Ingreso ingreso, Boolean isnew){ 
+        this.ingreso=ingreso;
+        this.isnew=isnew;
+        this.cargarIngreso();
+    }
 
     @FXML
     private void editarIngreso(ActionEvent event) {
@@ -52,6 +61,17 @@ public class EditarIngresoController implements Initializable {
 
     @FXML
     private void cancelarIngreso(ActionEvent event) {
+        Window.close(event);
+        this.cargarIngreso();
     }
     
+    public void cargarIngreso(){
+        
+       
+        cantidad = Integer.toString(ingreso.getCantidad());
+        this.txt_cantidadEditar.setText(cantidad);
+        this.txt_conceptoEditar.setText(ingreso.getConcepto());
+        this.txt_observacionesEditar.setText(ingreso.getObservaciones());
+        
+    }
 }

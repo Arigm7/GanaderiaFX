@@ -4,9 +4,10 @@ package ganaderiafx.modelo.pojos;
 import java.util.Date;
 
 
-public class Ingreso {
-    private Integer idIngreso;
-    private Integer cantidad;
+public class Egreso {
+    
+    private Integer idEgreso;
+    private String motivo;
     private String observaciones;
     private String fechaCreacion;
     private String fechaModificacion;
@@ -14,21 +15,21 @@ public class Ingreso {
     private String concepto;
     private Integer idCatalogoConcepto;
 
-    public Ingreso() {
+    public Egreso() {
     }
 
-    public Ingreso(Integer idIngreso, Integer cantidad, String observaciones, String fechaCreacion, String fechaModificacion, Integer idCatalogoConcepto) {
-        this.idIngreso = idIngreso;
-        this.cantidad = cantidad;
+    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, Integer idCatalogoConcepto) {
+        this.idEgreso = idEgreso;
+        this.motivo = motivo;
         this.observaciones = observaciones;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
         this.idCatalogoConcepto = idCatalogoConcepto;
     }
 
-    public Ingreso(Integer idIngreso, Integer cantidad, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto) {
-        this.idIngreso = idIngreso;
-        this.cantidad = cantidad;
+    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto) {
+        this.idEgreso = idEgreso;
+        this.motivo = motivo;
         this.observaciones = observaciones;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
@@ -37,20 +38,20 @@ public class Ingreso {
     }
 
     
-    public Integer getIdIngreso() {
-        return idIngreso;
+    public Integer getIdEgreso() {
+        return idEgreso;
     }
 
-    public void setIdIngreso(Integer idIngreso) {
-        this.idIngreso = idIngreso;
+    public void setIdEgreso(Integer idEgreso) {
+        this.idEgreso = idEgreso;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
     public String getObservaciones() {
@@ -100,7 +101,7 @@ public class Ingreso {
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
-
     
-   
+    
+    
 }

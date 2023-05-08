@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RanchoController">
+   <children>
+      <TableView fx:id="tbl_rancho" layoutX="1.0" layoutY="140.0" onMouseClicked="#clickTable" prefHeight="464.0" prefWidth="850.0">
+         <columns>
+            <TableColumn fx:id="tcl_idRancho" prefWidth="70.0" text="Id Rancho" />
+            <TableColumn fx:id="tcl_nombreRancho" prefWidth="158.0" text="Nombre" />
+            <TableColumn fx:id="tcl_coloniaRacho" prefWidth="136.6666717529297" text="Colonia" />
+            <TableColumn fx:id="tcl_calleRancho" prefWidth="147.66665649414062" text="Calle" />
+            <TableColumn fx:id="tcl_numExtRancho" prefWidth="114.0" text="Número Externo" />
+            <TableColumn fx:id="tcl_estatusRancho" prefWidth="126.0" text="Estatus" />
+            <TableColumn fx:id="tcl_usuarioRancho" prefWidth="102.0" text="Usuario" />
+         </columns>
+      </TableView>
+      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <Button fx:id="btn_nuevaRancho" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaRancho" prefHeight="25.0" prefWidth="92.0" text="Nueva">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_editarRancho" layoutX="121.0" layoutY="35.0" mnemonicParsing="false" onAction="#editarRancho" prefHeight="25.0" prefWidth="92.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_activarRancho" layoutX="230.0" layoutY="35.0" mnemonicParsing="false" onAction="#activarRancho" prefHeight="25.0" prefWidth="92.0" text="Activar">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/alta.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_desactivarRancho" layoutX="341.0" layoutY="35.0" mnemonicParsing="false" onAction="#desactivarRancho" prefHeight="25.0" prefWidth="92.0" text="Desactivar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/down.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ranchos" wrappingWidth="61.689453125">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
+         <children>
+            <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_buscarRancho" layoutX="68.0" layoutY="22.0" prefHeight="29.0" prefWidth="149.0" promptText="Buscar" />
+            <Button fx:id="btn_buscarRancho" layoutX="231.0" layoutY="24.0" mnemonicParsing="false" onAction="#buscarRancho" prefHeight="23.0" prefWidth="92.0" text="Buscar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_limpiarRancho" layoutX="336.0" layoutY="24.0" mnemonicParsing="false" onAction="#limpiarRancho" prefHeight="25.0" prefWidth="92.0" text="Limpiar">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="793.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="611.0" layoutY="26.0" text="Usuario:" textFill="WHITE" />
+            <Label fx:id="lbl_nombreUsuarioRancho" layoutX="660.0" layoutY="26.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

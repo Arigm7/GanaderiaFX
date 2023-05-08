@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import ganaderiafx.api.requests.Requests;
 import ganaderiafx.modelo.pojos.Raza;
+import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -59,7 +60,13 @@ public class RazaController implements Initializable {
     private TableColumn<Raza, String> tcl_estatusRaza;
 
     Raza raza = null;
-
+    Usuario nombreUsuario=null;
+    
+    public void setData(Usuario nombreUsuario){                  
+        this.nombreUsuario=nombreUsuario;
+        this.lbl_nombreUsuarioRaza.setText(nombreUsuario.getNombre());
+    }
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.cargarTabla();

@@ -81,7 +81,7 @@ public class InicioSesionController implements Initializable {
                         context.put("mac",JavaUtils.getMAC());
                         context.put("usuario", user);                                                  //se inserto el objeto
                         context.put("ip",InetAddress.getLocalHost());
-
+                        
                         if(user.getIdRol() == 201){
                             
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/PrincipalFXML.fxml"));
@@ -90,7 +90,7 @@ public class InicioSesionController implements Initializable {
                             
                             PrincipalController ctrl = loader.getController();
                             ctrl.setData(context);
-                            
+                            ctrl.setDataUsuario(user);
                             Scene scene = new Scene(principal);
 
                             stage.setScene(scene);

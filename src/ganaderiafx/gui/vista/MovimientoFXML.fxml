@@ -94,7 +94,7 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_ingresos" layoutY="70.0" prefHeight="453.0" prefWidth="848.0">
+                  <TableView fx:id="tbl_ingresos" layoutY="70.0" onMouseClicked="#clickTableIngreso" prefHeight="453.0" prefWidth="848.0">
                     <columns>
                       <TableColumn fx:id="tcl_idIngreso" prefWidth="75.0" text="Id Ingreso" />
                       <TableColumn fx:id="tcl_cantidadIngreso" prefWidth="111.0" text="Cantidad" />
@@ -154,14 +154,14 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_egreso" layoutY="70.0" prefHeight="453.0" prefWidth="848.0">
+                  <TableView fx:id="tbl_egreso" layoutY="70.0" onMouseClicked="#clickTableEgreso" prefHeight="453.0" prefWidth="848.0">
                     <columns>
                       <TableColumn fx:id="tcl_idEgreso" prefWidth="75.0" text="Id Egreso" />
                       <TableColumn fx:id="tcl_motivoEgreso" prefWidth="126.0" text="Motivo" />
                         <TableColumn fx:id="tcl_observacionesEgreso" prefWidth="160.0" text="Obsercaciones" />
                         <TableColumn fx:id="tcl_fechaCreacionEgreso" prefWidth="134.33334350585938" text="Fecha de creación" />
                         <TableColumn fx:id="tcl_fechaMotificacionEgreso" prefWidth="155.33334350585938" text="Fecha de modificación" />
-                        <TableColumn prefWidth="82.66668701171875" text="Catalogo" />
+                        <TableColumn fx:id="tcl_catalogoEgreso" prefWidth="82.66668701171875" text="Catalogo" />
                         <TableColumn fx:id="tcl_conceptoEgreso" prefWidth="119.0" text="Concepto" />
                     </columns>
                   </TableView>

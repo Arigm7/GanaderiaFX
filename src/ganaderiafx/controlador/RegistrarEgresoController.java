@@ -5,6 +5,7 @@
  */
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Egreso;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -34,10 +35,9 @@ public class RegistrarEgresoController implements Initializable {
     @FXML
     private Button btn_cancelarEgreso;
     @FXML
-    private DatePicker dpk_fechaCreacionEgreso;
-    @FXML
     private TextArea txt_observacionesRegistro;
 
+    Egreso egreso = null;
     /**
      * Initializes the controller class.
      */
@@ -46,6 +46,9 @@ public class RegistrarEgresoController implements Initializable {
         // TODO
     }    
 
+    public void setData(Egreso egreso){  
+        this.egreso=egreso;
+    }
     @FXML
     private void registrarEgreso(ActionEvent event) {
     }

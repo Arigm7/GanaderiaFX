@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import ganaderiafx.api.requests.Requests;
 import ganaderiafx.modelo.pojos.CatalogoConcepto;
 import ganaderiafx.modelo.pojos.Rol;
+import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -81,7 +82,12 @@ public class CatalogoController implements Initializable {
     
     CatalogoConcepto catalogo = null;
     Rol rol = null;
-
+    Usuario nombreUsuario=null;
+    
+    public void setData(Usuario nombreUsuario){                  
+        this.nombreUsuario=nombreUsuario;
+        this.lbl_nombreUsuarioCatalogo.setText(nombreUsuario.getNombre());
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.cargarTablaCatalogo();

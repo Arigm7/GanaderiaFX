@@ -69,7 +69,13 @@ public class UsuarioController implements Initializable {
     private TableColumn<Usuario, Integer> tcl_rolUsuario;
 
     Usuario usuario = null;
-
+    Usuario nombreUsuario=null;
+    
+    public void setData(Usuario nombreUsuario){                  
+        this.nombreUsuario=nombreUsuario;
+        this.lbl_nombreUsuarioUsuario.setText(nombreUsuario.getNombre());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        this.cargarTabla();

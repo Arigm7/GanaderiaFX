@@ -5,6 +5,8 @@
  */
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Egreso;
+import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,21 +34,26 @@ public class EditarEgresoController implements Initializable {
     @FXML
     private Button btn_cancelarEgreso;
     @FXML
-    private DatePicker dpk_fechaModificacion;
-    @FXML
     private TextArea txt_observacionesEditar;
     @FXML
     private Label lbl_nomUsuario_EditarEgreso;
     @FXML
     private TextField txt_idEgreso;
 
-    /**
-     * Initializes the controller class.
-     */
+    Egreso egreso = null;
+    Boolean isnew=false;
+    String id = "";
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setData(Egreso egreso, Boolean isnew){ 
+        this.egreso=egreso;
+        this.isnew=isnew;
+        this.cargarEgreso();
+    }
 
     @FXML
     private void editarEgreso(ActionEvent event) {
@@ -54,6 +61,17 @@ public class EditarEgresoController implements Initializable {
 
     @FXML
     private void cancelarEgreso(ActionEvent event) {
+        Window.close(event);
+        this.cargarEgreso();
     }
     
+    public void cargarEgreso(){
+        id = Integer.toString(egreso.getIdEgreso());
+        this.txt_idEgreso.setText(id);
+        this.txt_conceptoEditar.setText(egreso.getConcepto());
+        this.txt_observacionesEditar.setText(egreso.getObservaciones());
+        this.txt_motivoEditar.setText(egreso.getMotivo());
+        
+    }
 }
+    

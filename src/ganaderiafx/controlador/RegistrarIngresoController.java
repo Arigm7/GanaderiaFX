@@ -5,6 +5,7 @@
  */
 package ganaderiafx.controlador;
 
+import ganaderiafx.modelo.pojos.Ingreso;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -32,12 +33,11 @@ public class RegistrarIngresoController implements Initializable {
     @FXML
     private Button btn_cancelarIngreso;
     @FXML
-    private DatePicker dpk_fechaCreacionIngreso;
-    @FXML
     private Label lbl_nomUsuario_RegistrarIngreso;
     @FXML
     private TextArea txt_observacionesRegistro;
 
+    Ingreso ingreso = null;
     /**
      * Initializes the controller class.
      */
@@ -45,6 +45,10 @@ public class RegistrarIngresoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setData(Ingreso ingreso){  
+        this.ingreso=ingreso;
+    }
 
     @FXML
     private void registrarIngreso(ActionEvent event) {
