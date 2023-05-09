@@ -37,6 +37,12 @@
                   <MenuItem fx:id="mi_catalogos" mnemonicParsing="false" onAction="#abrirCatalogo" text="Catalogos" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Historial de Movimientos">
+              <items>
+                <MenuItem fx:id="mi_ingreso_historial" mnemonicParsing="false" onAction="#abrirl_IngresoHistorial" text="Ingresos" />
+                  <MenuItem fx:id="mi_egreso_historial" mnemonicParsing="false" onAction="#abrirl_EgresoHistorial" text="Egresos" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

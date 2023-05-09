@@ -35,6 +35,10 @@ public class PrincipalController implements Initializable {
     private MenuItem mi_rancho;
 
     Usuario usuario = null;
+    @FXML
+    private MenuItem mi_ingreso_historial;
+    @FXML
+    private MenuItem mi_egreso_historial;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -128,6 +132,38 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
       
+    }
+
+    @FXML
+    private void abrirl_IngresoHistorial(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/IngresoHistorialFXML.fxml"));
+
+            Parent principal = loader.load();
+
+            IngresoHistorialController usuario = loader.getController();
+            usuario.setData(this.usuario);
+            
+            pnl_principal.setCenter(principal);
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void abrirl_EgresoHistorial(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/EgresoHistorialFXML.fxml"));
+
+            Parent principal = loader.load();
+
+            EgresoHistorialController usuario = loader.getController();
+            usuario.setData(this.usuario);
+            
+            pnl_principal.setCenter(principal);
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

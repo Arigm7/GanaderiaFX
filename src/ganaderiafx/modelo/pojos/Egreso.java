@@ -13,8 +13,9 @@ public class Egreso {
     private String fechaModificacion;
     private String catalogo;
     private String concepto;
-    private String rancho;
     private String estatus;
+    private String rancho;
+    private String usuario;
     private Integer idCatalogoConcepto;
 
     public Egreso() {
@@ -29,7 +30,7 @@ public class Egreso {
         this.idCatalogoConcepto = idCatalogoConcepto;
     }
 
-    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto, String rancho, String estatus) {
+    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto, String estatus, String rancho, String usuario) {
         this.idEgreso = idEgreso;
         this.motivo = motivo;
         this.observaciones = observaciones;
@@ -37,13 +38,11 @@ public class Egreso {
         this.fechaModificacion = fechaModificacion;
         this.catalogo = catalogo;
         this.concepto = concepto;
-        this.rancho = rancho;
         this.estatus = estatus;
+        this.rancho = rancho;
+        this.usuario = usuario;
     }
 
-    
-
-    
     public Integer getIdEgreso() {
         return idEgreso;
     }
@@ -122,6 +121,14 @@ public class Egreso {
 
     public void setEstatus(String estatus) {
         this.estatus = estatus;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
     
     

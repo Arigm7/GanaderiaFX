@@ -100,10 +100,14 @@ public class MovimientoController implements Initializable {
     private TableColumn<Ingreso, String> tcl_estatusIngreso;
     @FXML
     private TableColumn<Egreso, String> tcl_estatusEgreso;
-
+    @FXML
+    private TableColumn<Ingreso, String> tcl_usuarioIngreso;
+    @FXML
+    private TableColumn<Egreso, String> tcl_usuarioEgreso;
     Ingreso ingreso = null;
     Egreso egreso = null;
     Usuario nombreUsuario= null;
+
 
 
     public void setData(Usuario nombreUsuario){                  
@@ -272,6 +276,7 @@ public class MovimientoController implements Initializable {
         tcl_conceptoIngreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
         tcl_ranchoIngreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
         tcl_estatusIngreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioIngreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
 
         
         listaIngreso.forEach(e ->{
@@ -300,6 +305,7 @@ public class MovimientoController implements Initializable {
         tcl_conceptoEgreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
         tcl_ranchoEgreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
         tcl_estatusEgreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioEgreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
 
         listaEgreso.forEach(e -> {
             tbl_egreso.getItems().add(e);
