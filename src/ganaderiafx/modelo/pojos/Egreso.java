@@ -13,6 +13,8 @@ public class Egreso {
     private String fechaModificacion;
     private String catalogo;
     private String concepto;
+    private String rancho;
+    private String estatus;
     private Integer idCatalogoConcepto;
 
     public Egreso() {
@@ -27,7 +29,7 @@ public class Egreso {
         this.idCatalogoConcepto = idCatalogoConcepto;
     }
 
-    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto) {
+    public Egreso(Integer idEgreso, String motivo, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto, String rancho, String estatus) {
         this.idEgreso = idEgreso;
         this.motivo = motivo;
         this.observaciones = observaciones;
@@ -35,7 +37,11 @@ public class Egreso {
         this.fechaModificacion = fechaModificacion;
         this.catalogo = catalogo;
         this.concepto = concepto;
+        this.rancho = rancho;
+        this.estatus = estatus;
     }
+
+    
 
     
     public Integer getIdEgreso() {
@@ -100,6 +106,22 @@ public class Egreso {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+    }
+
+    public String getRancho() {
+        return rancho;
+    }
+
+    public void setRancho(String rancho) {
+        this.rancho = rancho;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
     
     

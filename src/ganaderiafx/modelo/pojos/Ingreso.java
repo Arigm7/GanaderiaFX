@@ -12,6 +12,8 @@ public class Ingreso {
     private String fechaModificacion;
     private String catalogo;
     private String concepto;
+    private String rancho;
+    private String estatus;
     private Integer idCatalogoConcepto;
 
     public Ingreso() {
@@ -26,7 +28,7 @@ public class Ingreso {
         this.idCatalogoConcepto = idCatalogoConcepto;
     }
 
-    public Ingreso(Integer idIngreso, Integer cantidad, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto) {
+    public Ingreso(Integer idIngreso, Integer cantidad, String observaciones, String fechaCreacion, String fechaModificacion, String catalogo, String concepto, String rancho, String estatus) {
         this.idIngreso = idIngreso;
         this.cantidad = cantidad;
         this.observaciones = observaciones;
@@ -34,7 +36,11 @@ public class Ingreso {
         this.fechaModificacion = fechaModificacion;
         this.catalogo = catalogo;
         this.concepto = concepto;
+        this.rancho = rancho;
+        this.estatus = estatus;
     }
+
+    
 
     
     public Integer getIdIngreso() {
@@ -99,6 +105,22 @@ public class Ingreso {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+    }
+
+    public String getRancho() {
+        return rancho;
+    }
+
+    public void setRancho(String rancho) {
+        this.rancho = rancho;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
     }
 
     

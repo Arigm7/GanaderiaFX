@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -43,6 +44,8 @@ public class EditarEgresoController implements Initializable {
     Egreso egreso = null;
     Boolean isnew=false;
     String id = "";
+    @FXML
+    private ComboBox<?> cmb_ramcho;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,6 +74,7 @@ public class EditarEgresoController implements Initializable {
         this.txt_conceptoEditar.setText(egreso.getConcepto());
         this.txt_observacionesEditar.setText(egreso.getObservaciones());
         this.txt_motivoEditar.setText(egreso.getMotivo());
+        
         
     }
 }

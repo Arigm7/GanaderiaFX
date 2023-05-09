@@ -92,10 +92,19 @@ public class MovimientoController implements Initializable {
     private TableColumn<Egreso, String> tcl_catalogoEgreso;
     @FXML
     private Label lbl_nomUsuario_movimiento;
+    @FXML
+    private TableColumn<Ingreso, String> tcl_ranchoIngreso;
+    @FXML
+    private TableColumn<Egreso, String> tcl_ranchoEgreso;
+    @FXML
+    private TableColumn<Ingreso, String> tcl_estatusIngreso;
+    @FXML
+    private TableColumn<Egreso, String> tcl_estatusEgreso;
 
     Ingreso ingreso = null;
     Egreso egreso = null;
     Usuario nombreUsuario= null;
+
 
     public void setData(Usuario nombreUsuario){                  
         this.nombreUsuario=nombreUsuario;
@@ -261,6 +270,8 @@ public class MovimientoController implements Initializable {
         tcl_fechaModificacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
         tcl_catalogoIngreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
         tcl_conceptoIngreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoIngreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusIngreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
 
         
         listaIngreso.forEach(e ->{
@@ -287,6 +298,8 @@ public class MovimientoController implements Initializable {
         tcl_fechaMotificacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
         tcl_catalogoEgreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
         tcl_conceptoEgreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoEgreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusEgreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
 
         listaEgreso.forEach(e -> {
             tbl_egreso.getItems().add(e);

@@ -44,9 +44,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="83.0" prefWidth="395.0" />
+            <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="83.0" prefWidth="149.0" />
             <Label layoutX="59.0" layoutY="6.0" text="ID:" />
-            <TextField fx:id="txt_idEgreso" disable="true" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #D9D9D9;" />
+            <Label layoutX="305.0" layoutY="106.0" text="Rancho:" />
+            <ComboBox fx:id="cmb_ramcho" layoutX="304.0" layoutY="142.0" prefWidth="150.0" />
+            <TextField fx:id="txt_idEgreso" editable="false" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="101.0" />
          </children>
       </Pane>
       <Pane prefHeight="70.0" prefWidth="514.0" style="-fx-background-color: #E8A12D;">

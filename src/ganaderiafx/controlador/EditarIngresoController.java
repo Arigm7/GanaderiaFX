@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -41,6 +42,11 @@ public class EditarIngresoController implements Initializable {
     Ingreso ingreso = null;
     Boolean isnew=false;
     String cantidad="";
+    String id="";
+    @FXML
+    private ComboBox<?> cmb_ranchoEditar;
+    @FXML
+    private TextField txt_idIngreso;
     /**
      * Initializes the controller class.
      */
@@ -69,6 +75,8 @@ public class EditarIngresoController implements Initializable {
         
        
         cantidad = Integer.toString(ingreso.getCantidad());
+        id = Integer.toString(ingreso.getIdIngreso());
+        this.txt_idIngreso.setText(id);
         this.txt_cantidadEditar.setText(cantidad);
         this.txt_conceptoEditar.setText(ingreso.getConcepto());
         this.txt_observacionesEditar.setText(ingreso.getObservaciones());

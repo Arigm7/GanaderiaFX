@@ -102,7 +102,9 @@
                         <TableColumn fx:id="tcl_fechaCreacionIngreso" prefWidth="141.0" text="Fecha de creación" />
                         <TableColumn fx:id="tcl_fechaModificacionIngreso" prefWidth="141.33331298828125" text="Fecha de modificación" />
                         <TableColumn fx:id="tcl_catalogoIngreso" prefWidth="86.3333740234375" text="Catalogo" />
-                        <TableColumn fx:id="tcl_conceptoIngreso" prefWidth="119.0" text="Concepto" />
+                        <TableColumn fx:id="tcl_conceptoIngreso" prefWidth="113.0" text="Concepto" />
+                        <TableColumn fx:id="tcl_ranchoIngreso" prefWidth="82.0" text="Rancho" />
+                        <TableColumn fx:id="tcl_estatusIngreso" prefWidth="75.0" text="Estatus" />
                     </columns>
                   </TableView>
                </children>
@@ -163,6 +165,8 @@
                         <TableColumn fx:id="tcl_fechaMotificacionEgreso" prefWidth="155.33334350585938" text="Fecha de modificación" />
                         <TableColumn fx:id="tcl_catalogoEgreso" prefWidth="82.66668701171875" text="Catalogo" />
                         <TableColumn fx:id="tcl_conceptoEgreso" prefWidth="119.0" text="Concepto" />
+                        <TableColumn fx:id="tcl_ranchoEgreso" prefWidth="75.0" text="Rancho" />
+                        <TableColumn fx:id="tcl_estatusEgreso" prefWidth="75.0" text="Estatus" />
                     </columns>
                   </TableView>
                </children>

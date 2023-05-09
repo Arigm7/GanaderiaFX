@@ -12,26 +12,31 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Administración de Ganado">
+            <Menu mnemonicParsing="false" text="Administración de Ranchos">
+               <items>
+                  <MenuItem fx:id="mi_rancho" mnemonicParsing="false" onAction="#abrirRancho" text="Ranchos" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Administración de Razas">
             <items>
               <MenuItem fx:id="mi_raza" mnemonicParsing="false" onAction="#abrirRaza" text="Raza de Ganado" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Administración de Ranchos">
-               <items>
-                  <MenuItem fx:id="mi_rancho" mnemonicParsing="false" onAction="#abrirRancho" text="Rachos" />
-               </items></Menu>
-            <Menu mnemonicParsing="false" text="Administración de Usuarios">
-              <items>
-                <MenuItem fx:id="mi_usuario" mnemonicParsing="false" onAction="#abrirlUsuario" text="Usuarios" />
-                  <MenuItem fx:id="mi_catalogos" mnemonicParsing="false" onAction="#abrirCatalogo" text="Catalogos" />
-              </items>
-            </Menu>
           <Menu mnemonicParsing="false" text="Movimientos">
             <items>
               <MenuItem fx:id="mi_IngresoEgreso" mnemonicParsing="false" onAction="#abrirlIngresoEgreso" text="Ingresos y Egresos" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Administración de Usuarios">
+              <items>
+                <MenuItem fx:id="mi_usuario" mnemonicParsing="false" onAction="#abrirlUsuario" text="Usuarios" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Administración de Catálogo">
+               <items>
+                  <MenuItem fx:id="mi_catalogos" mnemonicParsing="false" onAction="#abrirCatalogo" text="Catalogos" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

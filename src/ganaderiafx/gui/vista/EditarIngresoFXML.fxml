@@ -26,7 +26,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutY="117.0" prefHeight="284.0" prefWidth="527.0">
+      <Pane layoutY="117.0" prefHeight="284.0" prefWidth="508.0">
          <children>
             <Label layoutX="59.0" layoutY="43.0" text="Cantidad:" />
             <Label layoutX="60.0" layoutY="106.0" text="Observaciones:" />
@@ -51,7 +51,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="77.0" prefWidth="397.0" />
+            <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="77.0" prefWidth="189.0" />
+            <Label layoutX="305.0" layoutY="106.0" text="Rancho:" />
+            <ComboBox fx:id="cmb_ranchoEditar" layoutX="304.0" layoutY="136.0" prefWidth="150.0" />
+            <Label layoutX="59.0" layoutY="6.0" text="ID:" />
+            <TextField fx:id="txt_idIngreso" editable="false" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="99.0" />
          </children>
       </Pane>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="508.0" style="-fx-background-color: #FDC982;">
