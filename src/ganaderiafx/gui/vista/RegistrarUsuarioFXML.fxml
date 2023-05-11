@@ -34,7 +34,7 @@
             <Label layoutX="61.0" layoutY="242.0" text="Usuario:" />
             <Label layoutX="305.0" layoutY="43.0" text="Contraseña:" />
             <Label layoutX="308.0" layoutY="106.0" text="Estatus:" />
-            <ComboBox fx:id="cmb_rolRegistrar" layoutX="307.0" layoutY="190.0" onAction="#rolRegistrar" prefWidth="150.0" promptText="Rol" />
+            <ComboBox fx:id="cmb_rolRegistrar" layoutX="307.0" layoutY="202.0" onAction="#rolRegistrar" prefWidth="150.0" />
             <TextField fx:id="txt_nombreRegistrar" layoutX="60.0" layoutY="73.0" />
             <TextField fx:id="txt_apellidoPaternoRegistrar" layoutX="60.0" layoutY="132.0" />
             <TextField fx:id="txt_apellidoMaternoRegistrar" layoutX="58.0" layoutY="202.0" />
@@ -59,6 +59,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label layoutX="312.0" layoutY="174.0" text="Rol:" />
          </children>
       </Pane>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="527.0" style="-fx-background-color: #9EF885;">

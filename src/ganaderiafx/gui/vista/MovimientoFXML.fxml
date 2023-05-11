@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.MovimientoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.MovimientoController">
    <children>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -45,11 +45,11 @@
             <Label fx:id="lbl_nomUsuario_movimiento" layoutX="661.0" layoutY="28.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <SplitPane dividerPositions="0.3996212121212121" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="850.0">
+      <SplitPane dividerPositions="0.3996212121212121" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="880.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane prefHeight="70.0" prefWidth="848.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaIngreso" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaIngreso" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -94,7 +94,7 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_ingresos" layoutY="70.0" onMouseClicked="#clickTableIngreso" prefHeight="453.0" prefWidth="848.0">
+                  <TableView fx:id="tbl_ingresos" layoutY="70.0" onMouseClicked="#clickTableIngreso" prefHeight="453.0" prefWidth="880.0">
                     <columns>
                       <TableColumn fx:id="tcl_idIngreso" prefWidth="75.0" text="Id Ingreso" />
                       <TableColumn fx:id="tcl_cantidadIngreso" prefWidth="111.0" text="Cantidad" />
@@ -112,7 +112,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane prefHeight="70.0" prefWidth="848.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaEgreso" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaEgreso" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -157,7 +157,7 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_egreso" layoutY="70.0" onMouseClicked="#clickTableEgreso" prefHeight="453.0" prefWidth="848.0">
+                  <TableView fx:id="tbl_egreso" layoutY="70.0" onMouseClicked="#clickTableEgreso" prefHeight="453.0" prefWidth="880.0">
                     <columns>
                       <TableColumn fx:id="tcl_idEgreso" prefWidth="75.0" text="Id Egreso" />
                       <TableColumn fx:id="tcl_motivoEgreso" prefWidth="126.0" text="Motivo" />

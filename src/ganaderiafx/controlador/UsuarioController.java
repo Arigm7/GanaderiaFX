@@ -5,8 +5,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import ganaderiafx.api.requests.Requests;
 import ganaderiafx.modelo.pojos.Usuario;
+import ganaderiafx.utils.Window;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class UsuarioController implements Initializable {
@@ -82,7 +88,7 @@ public class UsuarioController implements Initializable {
     }    
 
     @FXML
-    private void buscarUsuario(ActionEvent event) {
+    private void buscarUsuario(ActionEvent event) {                         //FALTA
          
     }
 
@@ -155,9 +161,72 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    private void desactivarUsuario(ActionEvent event) {                     //FALTAAAAAAAA
-        
-         this.cargarTabla();
+    private void desactivarUsuario(ActionEvent event) {                    
+        if(this.usuario != null){
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("Seguro que desea desactivar el usuario?...");
+            //alert.showAndWait();
+            
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idUsuario",this.usuario.getIdUsuario());
+                        String respuesta = Requests.post("/usuario/eliminarUsuario/", params);
+                        
+                        JSONObject dataJson = new JSONObject(respuesta);
+                        
+                        if(this.usuario.getEstatus()=="Activo"){
+                            
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.usuario = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.usuario = null;
+                                this.cargarTabla();
+                            }
+                        } else{
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El usuario ya esta Inactivo...");
+                            alertInactivo.showAndWait();
+                            this.usuario = null;
+                            this.cargarTabla();
+                        }                      
+                    } catch (JSONException ex) {
+                        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.usuario = null;
+                    this.cargarTabla();
+                }
+            });
+        }else{
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Usuario...");
+            alertI.showAndWait();
+        }
+        //this.cargarTabla();
     }
     
     public void cargarTabla(){

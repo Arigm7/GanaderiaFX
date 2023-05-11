@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.UsuarioController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.UsuarioController">
    <children>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -45,7 +45,7 @@
             <Label fx:id="lbl_nombreUsuarioUsuario" layoutX="660.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="849.0" style="-fx-background-color: #D9D9D9;">
+      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
          <children>
             <Button fx:id="btn_nuevaUsuario" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaUsuario" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                <graphic>
@@ -90,16 +90,16 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="tbl_usuario" layoutX="1.0" layoutY="140.0" onMouseClicked="#clickTable" prefHeight="460.0" prefWidth="849.0">
+      <TableView fx:id="tbl_usuario" layoutX="1.0" layoutY="140.0" onMouseClicked="#clickTable" prefHeight="460.0" prefWidth="880.0">
          <columns>
             <TableColumn fx:id="tcl_idUsuario" prefWidth="64.0" text="Id Usuario" />
             <TableColumn fx:id="tcl_nombreUsuario" prefWidth="129.6666717529297" text="Nombre" />
             <TableColumn fx:id="tcl_apellidoPaterno" prefWidth="133.33331298828125" text="Apellido Paterno" />
             <TableColumn fx:id="tcl_apellidoMaterno" prefWidth="135.66668701171875" text="Apellido Materno" />
-            <TableColumn fx:id="tcl_usuarioUsuario" prefWidth="91.33331298828125" text="Usuario" />
-            <TableColumn fx:id="tcl_password" minWidth="0.0" prefWidth="116.33334350585938" text="Contraseña" />
-            <TableColumn fx:id="tcl_estatusUsuario" prefWidth="108.66668701171875" text="Estatus" />
-            <TableColumn fx:id="tcl_rolUsuario" prefWidth="72.0" text="Rol" />
+            <TableColumn fx:id="tcl_usuarioUsuario" prefWidth="104.0" text="Usuario" />
+            <TableColumn fx:id="tcl_password" minWidth="0.0" prefWidth="132.0" text="Contraseña" />
+            <TableColumn fx:id="tcl_estatusUsuario" prefWidth="106.33331298828125" text="Estatus" />
+            <TableColumn fx:id="tcl_rolUsuario" prefWidth="71.0" text="Rol" />
          </columns>
       </TableView>
    </children>

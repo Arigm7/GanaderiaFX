@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pnl_categoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.CatalogoController">
+<Pane fx:id="pnl_categoria" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.CatalogoController">
    <children>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -45,11 +45,11 @@
             <Label fx:id="lbl_nombreUsuarioCatalogo" layoutX="662.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <SplitPane dividerPositions="0.48484848484848486" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="850.0">
+      <SplitPane dividerPositions="0.48484848484848486" layoutY="70.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="880.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="762.0">
                <children>
-                  <Pane layoutY="-5.0" prefHeight="70.0" prefWidth="853.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane layoutY="-5.0" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaCatalogo" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaCatalogo" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -94,19 +94,19 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_catalogo" layoutY="65.0" onMouseClicked="#clickTableCatalogo" prefHeight="463.0" prefWidth="853.0">
+                  <TableView fx:id="tbl_catalogo" layoutY="65.0" onMouseClicked="#clickTableCatalogo" prefHeight="463.0" prefWidth="880.0">
                     <columns>
                       <TableColumn fx:id="tcl_idCatalogo" prefWidth="100.0" text="Id Catalogo" />
                       <TableColumn fx:id="tcl_catalogo" prefWidth="154.0" text="Catalogo" />
                         <TableColumn fx:id="tcl_conceptoCatalogo" prefWidth="348.0" text="Concepto" />
-                        <TableColumn fx:id="tbl_estatusCatalogo" prefWidth="250.0" text="Estatus" />
+                        <TableColumn fx:id="tbl_estatusCatalogo" prefWidth="275.0" text="Estatus" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane prefHeight="70.0" prefWidth="853.0" style="-fx-background-color: #D9D9D9;">
+                  <Pane prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
                      <children>
                         <Button fx:id="btn_nuevaRol" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaRol" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                            <graphic>
@@ -151,11 +151,11 @@
                         </Text>
                      </children>
                   </Pane>
-                  <TableView fx:id="tbl_rol" layoutY="70.0" onMouseClicked="#clickTableRol" prefHeight="453.0" prefWidth="854.0">
+                  <TableView fx:id="tbl_rol" layoutY="70.0" onMouseClicked="#clickTableRol" prefHeight="453.0" prefWidth="880.0">
                     <columns>
                       <TableColumn fx:id="tcl_idRol" prefWidth="111.0" text="Id Rol" />
                       <TableColumn fx:id="tcl_nombre" prefWidth="491.0" text="Nombre" />
-                        <TableColumn fx:id="tcl_estatus" prefWidth="251.0" text="Estatus" />
+                        <TableColumn fx:id="tcl_estatus" prefWidth="274.0" text="Estatus" />
                     </columns>
                   </TableView>
                </children>

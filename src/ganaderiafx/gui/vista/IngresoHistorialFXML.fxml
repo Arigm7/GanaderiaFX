@@ -8,10 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.IngresoHistorialController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.IngresoHistorialController">
    <children>
-      <Pane fx:id="pnl_busqueda" layoutX="-1.0" layoutY="-1.0" prefHeight="68.0" prefWidth="852.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="68.0" prefWidth="880.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
@@ -46,7 +45,7 @@
             <Label fx:id="lbl_nomUsuario_ingresoH" layoutX="661.0" layoutY="28.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
          </children>
       </Pane>
-      <TableView fx:id="tbl_ingresos" layoutX="-1.0" layoutY="110.0" onMouseClicked="#clickTableIngreso" prefHeight="480.0" prefWidth="852.0">
+      <TableView fx:id="tbl_ingresos" layoutX="-1.0" layoutY="110.0" onMouseClicked="#clickTableIngreso" prefHeight="480.0" prefWidth="880.0">
          <columns>
             <TableColumn fx:id="tcl_idIngreso" prefWidth="75.0" text="Id Ingreso" />
             <TableColumn fx:id="tcl_cantidadIngreso" prefWidth="111.0" text="Cantidad" />
@@ -60,7 +59,7 @@
             <TableColumn fx:id="tcl_usuarioIngreso" prefWidth="75.0" text="Usuario" />
          </columns>
       </TableView>
-      <Pane layoutX="-1.0" layoutY="67.0" prefHeight="43.0" prefWidth="852.0" style="-fx-background-color: #D9D9D9;">
+      <Pane layoutY="68.0" prefHeight="43.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
          <children>
             <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historial de Ingresos" wrappingWidth="125.0">
                <font>

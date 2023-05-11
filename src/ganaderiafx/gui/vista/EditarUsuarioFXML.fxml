@@ -27,13 +27,13 @@
             <Label layoutX="61.0" layoutY="242.0" text="Usuario:" />
             <Label layoutX="305.0" layoutY="43.0" text="Contraseña:" />
             <Label layoutX="308.0" layoutY="106.0" text="Estatus:" />
-            <ComboBox fx:id="cmb_rolEditar" layoutX="307.0" layoutY="190.0" onAction="#rolEditar" prefWidth="150.0" promptText="Rol" />
+            <ComboBox fx:id="cmb_rolEditar" layoutX="307.0" layoutY="202.0" onAction="#rolEditar" prefWidth="150.0" />
             <TextField fx:id="txt_nombreEditar" layoutX="60.0" layoutY="73.0" />
             <TextField fx:id="txt_apellidoPaternoEditar" layoutX="60.0" layoutY="132.0" />
             <TextField fx:id="txt_apellidoMaternoEditar" layoutX="58.0" layoutY="202.0" />
             <TextField fx:id="txt_usuarioEditar" layoutX="60.0" layoutY="269.0" />
             <TextField fx:id="txt_passwordEditar" layoutX="305.0" layoutY="73.0" />
-            <TextField fx:id="txt_estatusEditar" disable="true" layoutX="308.0" layoutY="132.0" />
+            <TextField fx:id="txt_estatusEditar" editable="false" layoutX="308.0" layoutY="132.0" />
             <Button fx:id="btn_editarUsuario" layoutX="276.0" layoutY="268.0" mnemonicParsing="false" onAction="#editarUsuario" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #E39B39;" text="Editar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -52,6 +52,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label layoutX="308.0" layoutY="174.0" text="Rol:" />
          </children>
       </Pane>
       <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="527.0" style="-fx-background-color: #E8A12D;">

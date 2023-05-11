@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RanchoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.RanchoController">
    <children>
-      <TableView fx:id="tbl_rancho" layoutX="1.0" layoutY="140.0" onMouseClicked="#clickTable" prefHeight="459.0" prefWidth="850.0">
+      <TableView fx:id="tbl_rancho" layoutX="1.0" layoutY="140.0" onMouseClicked="#clickTable" prefHeight="459.0" prefWidth="880.0">
          <columns>
             <TableColumn fx:id="tcl_idRancho" prefWidth="70.0" text="Id Rancho" />
             <TableColumn fx:id="tcl_nombreRancho" prefWidth="158.0" text="Nombre" />
@@ -18,10 +18,10 @@
             <TableColumn fx:id="tcl_calleRancho" prefWidth="147.66665649414062" text="Calle" />
             <TableColumn fx:id="tcl_numExtRancho" prefWidth="114.0" text="Número Externo" />
             <TableColumn fx:id="tcl_estatusRancho" prefWidth="115.0" text="Estatus" />
-            <TableColumn fx:id="tcl_usuarioRancho" prefWidth="107.0" text="Usuario" />
+            <TableColumn fx:id="tcl_usuarioRancho" prefWidth="137.0" text="Usuario" />
          </columns>
       </TableView>
-      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #D9D9D9;">
+      <Pane layoutX="1.0" layoutY="70.0" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #D9D9D9;">
          <children>
             <Button fx:id="btn_nuevaRancho" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#nuevaRancho" prefHeight="25.0" prefWidth="92.0" text="Nueva">
                <graphic>
@@ -66,7 +66,7 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="850.0" style="-fx-background-color: #0F3D59;">
+      <Pane fx:id="pnl_busqueda" prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #0F3D59;">
          <children>
             <Label layoutX="18.0" layoutY="27.0" text="Código" textFill="WHITE">
                <font>
