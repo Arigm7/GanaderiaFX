@@ -82,10 +82,42 @@ public class IngresoHistorialController implements Initializable {
 
     @FXML
     private void buscar(ActionEvent event) {
+        String buscar = this.txt_buscarIngreso.getText();
+
+        String respuesta = "";
+       
+        tbl_ingresos.getItems().clear();
+
+        respuesta = Requests.get("/ingreso/getHistorialById/"+buscar);
+        Gson gson = new Gson();
+        TypeToken<List<Ingreso>> token = new TypeToken<List<Ingreso>>() {
+        };
+
+        List<Ingreso> listaIngreso = gson.fromJson(respuesta, token.getType());
+        
+        
+        //System.out.println("A VER "+listaIngreso);
+        
+        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+        tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+        tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        tcl_fechaModificacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+        tcl_catalogoIngreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
+        tcl_conceptoIngreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoIngreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusIngreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioIngreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+
+        listaIngreso.forEach(e -> {
+            tbl_ingresos.getItems().add(e);
+        });
     }
 
     @FXML
     private void limpiar(ActionEvent event) {
+        txt_buscarIngreso.setText("");
+        this.cargarTabla();
     }
 
     @FXML

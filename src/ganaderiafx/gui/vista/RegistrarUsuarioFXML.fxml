@@ -34,13 +34,13 @@
             <Label layoutX="61.0" layoutY="242.0" text="Usuario:" />
             <Label layoutX="305.0" layoutY="43.0" text="Contraseña:" />
             <Label layoutX="308.0" layoutY="106.0" text="Estatus:" />
-            <ComboBox fx:id="cmb_rolRegistrar" layoutX="307.0" layoutY="202.0" onAction="#rolRegistrar" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_rolRegistrar" layoutX="307.0" layoutY="202.0" onAction="#rolRegistrar" prefWidth="150.0" promptText="Rol" />
             <TextField fx:id="txt_nombreRegistrar" layoutX="60.0" layoutY="73.0" />
             <TextField fx:id="txt_apellidoPaternoRegistrar" layoutX="60.0" layoutY="132.0" />
             <TextField fx:id="txt_apellidoMaternoRegistrar" layoutX="58.0" layoutY="202.0" />
             <TextField fx:id="txt_usuarioRegistrar" layoutX="60.0" layoutY="269.0" />
             <TextField fx:id="txt_passwordRegistrar" layoutX="305.0" layoutY="73.0" />
-            <TextField fx:id="txt_estatusRegistrar" disable="true" layoutX="308.0" layoutY="132.0" text="Activo" />
+            <TextField fx:id="txt_estatusRegistrar" editable="false" layoutX="308.0" layoutY="132.0" text="Activo" />
             <Button fx:id="btn_registrarUsuario" layoutX="276.0" layoutY="268.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #317B1D;" text="Registrar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

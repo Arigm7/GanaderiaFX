@@ -10,6 +10,8 @@ import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,6 +33,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MovimientoController implements Initializable {
@@ -128,6 +133,8 @@ public class MovimientoController implements Initializable {
     @FXML
     private void limpiarMovimiento(ActionEvent event) {
         txt_buscarMovimiento.setText("");
+        this.cargarTablaEgreso();
+        this.cargarTablaIngreso();
     }
 
     @FXML
@@ -187,10 +194,144 @@ public class MovimientoController implements Initializable {
 
     @FXML
     private void activarIngreso(ActionEvent event) {
+        if (this.ingreso != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea activar el ingreso?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idIngreso", this.ingreso.getIdIngreso());
+
+                        String respuesta = Requests.post("/ingreso/actualizarEstatus/", params);
+
+                        String estado = this.ingreso.getEstatus();
+
+                        if ("Inactivo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.ingreso = null;
+                                this.cargarTablaIngreso();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.ingreso = null;
+                                this.cargarTablaIngreso();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El ingreso ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.ingreso = null;
+                            this.cargarTablaIngreso();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.ingreso = null;
+                    this.cargarTablaIngreso();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Ingreso...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void desactivarIngresos(ActionEvent event) {
+        if (this.ingreso != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea desactivar el ingreso?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idIngreso", this.ingreso.getIdIngreso());
+
+                        String respuesta = Requests.post("/ingreso/eliminarIngreso/", params);
+
+                        String estado = this.ingreso.getEstatus();
+
+                        if ("Activo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.ingreso = null;
+                                this.cargarTablaIngreso();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.ingreso = null;
+                                this.cargarTablaIngreso();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El ingreso ya esta Desactivado...");
+                            alertInactivo.showAndWait();
+                            this.ingreso = null;
+                            this.cargarTablaIngreso();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.ingreso = null;
+                    this.cargarTablaIngreso();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Ingreso...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
@@ -249,10 +390,144 @@ public class MovimientoController implements Initializable {
 
     @FXML
     private void activarEgreso(ActionEvent event) {
+        if (this.egreso != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea activar el egreso...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idEgreso", this.egreso.getIdEgreso());
+
+                        String respuesta = Requests.post("/egreso/actualizarEstatus/", params);
+
+                        String estado = this.egreso.getEstatus();
+
+                        if ("Inactivo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.egreso = null;
+                                this.cargarTablaEgreso();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.egreso = null;
+                                this.cargarTablaEgreso();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El egreso ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.egreso = null;
+                            this.cargarTablaEgreso();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.egreso = null;
+                    this.cargarTablaEgreso();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Egreso...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void desactivarEgreso(ActionEvent event) {
+        if (this.egreso != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea desactivar el egreso...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idEgreso", this.egreso.getIdEgreso());
+
+                        String respuesta = Requests.post("/egreso/eliminarEgreso/", params);
+
+                        String estado = this.egreso.getEstatus();
+
+                        if ("Activo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.egreso = null;
+                                this.cargarTablaEgreso();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.egreso = null;
+                                this.cargarTablaEgreso();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El egreso ya esta Inactivo...");
+                            alertInactivo.showAndWait();
+                            this.egreso = null;
+                            this.cargarTablaEgreso();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.egreso = null;
+                    this.cargarTablaEgreso();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Egreso...");
+            alertI.showAndWait();
+        }
     }
     
     public void cargarTablaIngreso(){

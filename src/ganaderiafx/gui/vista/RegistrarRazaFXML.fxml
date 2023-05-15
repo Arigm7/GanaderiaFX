@@ -24,7 +24,7 @@
             <Label layoutX="59.0" layoutY="43.0" text="Nombre:" />
             <Label layoutX="302.0" layoutY="43.0" text="Estatus:" />
             <TextField fx:id="txt_nombreRazaRegistrar" layoutX="60.0" layoutY="73.0" />
-            <TextField fx:id="txt_estatusRazaRegistrar" disable="true" layoutX="293.0" layoutY="73.0" text="Activo" />
+            <TextField fx:id="txt_estatusRazaRegistrar" editable="false" layoutX="293.0" layoutY="73.0" text="Activo" />
             <Button fx:id="btn_registrarRaza" layoutX="248.0" layoutY="136.0" mnemonicParsing="false" onAction="#registrarRaza" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #317B1D;" text="Registrar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

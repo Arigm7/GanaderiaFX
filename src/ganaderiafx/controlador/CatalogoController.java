@@ -9,6 +9,8 @@ import ganaderiafx.modelo.pojos.Rol;
 import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -21,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +32,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class CatalogoController implements Initializable {
@@ -150,28 +155,160 @@ public class CatalogoController implements Initializable {
 
     @FXML
     private void activarCatalogo(ActionEvent event) {
-        
-        this.cargarTablaCatalogo();
+
+        if (this.catalogo != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea activar el catálogo?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idCatalogoConcepto", this.catalogo.getIdCatalogoConcepto());
+
+                        String respuesta = Requests.post("/catalogoConcepto/actualizarEstatus/", params);
+
+                        String estado = this.catalogo.getEstatus();
+
+                        if ("Inactivo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.catalogo = null;
+                                this.cargarTablaCatalogo();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.catalogo = null;
+                                this.cargarTablaCatalogo();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El catálogo ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.catalogo = null;
+                            this.cargarTablaCatalogo();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.catalogo = null;
+                    this.cargarTablaCatalogo();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Catálogo...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void desactivarCatalogo(ActionEvent event) {
-        
-        this.cargarTablaCatalogo();
+
+        if (this.catalogo != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea desactivar el catálogo?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idCatalogoConcepto", this.catalogo.getIdCatalogoConcepto());
+
+                        String respuesta = Requests.post("/catalogoConcepto/eliminarCatalogo/", params);
+
+                        String estado = this.catalogo.getEstatus();
+
+                        if ("Activo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.catalogo = null;
+                                this.cargarTablaCatalogo();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.catalogo = null;
+                                this.cargarTablaCatalogo();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El catálogo ya esta Inactivo...");
+                            alertInactivo.showAndWait();
+                            this.catalogo = null;
+                            this.cargarTablaCatalogo();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.catalogo = null;
+                    this.cargarTablaCatalogo();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Catálogo...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void nuevaRol(ActionEvent event) {
         try {
             Stage stage = new Stage();
-            
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/RegistrarRolFXML.fxml"));
-            
+
             Parent formRolRegistrar = loader.load();  //nodo raiz
-            
+
             RegistrarRolController ctrl = loader.getController();
             ctrl.setData(null);
-            
+
             Scene scene = new Scene(formRolRegistrar);
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Rol)");
@@ -180,31 +317,31 @@ public class CatalogoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-      this.cargarTablaRol();
+        this.cargarTablaRol();
     }
 
     @FXML
     private void editarRol(ActionEvent event) {
-        if(this.rol != null){
+        if (this.rol != null) {
             try {
                 Stage stage = new Stage();
-                
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ganaderiafx/gui/vista/EditarRolFXML.fxml"));
-                
+
                 Parent formRolEditar = loader.load();  //nodo raiz
-                
-                EditarRolController ctrl = loader.getController();             
-                ctrl.setData(this.rol,false);
-                
-                Scene scene = new Scene(formRolEditar);              
-                stage.setScene(scene);             
+
+                EditarRolController ctrl = loader.getController();
+                ctrl.setData(this.rol, false);
+
+                Scene scene = new Scene(formRolEditar);
+                stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Rol)");
                 stage.setResizable(false);
                 stage.show();
             } catch (IOException ex) {
                 Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText(null);
@@ -215,15 +352,166 @@ public class CatalogoController implements Initializable {
     }
 
     @FXML
-    private void activarRol(ActionEvent event) {                           //FALTAAAAAA
+    private void activarRol(ActionEvent event) {
         
-        this.cargarTablaRol();
+        if (this.rol != null) {
+
+            if (this.rol.getIdRol() != 201) {
+                
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Seguro que desea activar el rol?...");
+
+                alert.showAndWait().ifPresent(response -> {
+
+                    if (response == ButtonType.OK) {
+
+                        try {
+                            HashMap<String, Object> params = new LinkedHashMap<>();
+                            params.put("idRol", this.rol.getIdRol());
+
+                            String respuesta = Requests.post("/rol/actualizarEstatus/", params);
+
+                            String estado = this.rol.getEstatus();
+
+                            if ("Inactivo".equals(estado)) {
+
+                                JSONObject dataJson = new JSONObject(respuesta);
+
+                                if ((Boolean) dataJson.get("error") == false) {
+
+                                    Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                    alertC.setTitle("Informativo");
+                                    alertC.setHeaderText(null);
+                                    alertC.setContentText(dataJson.getString("mensaje"));
+                                    alertC.showAndWait();
+                                    this.rol = null;
+                                    this.cargarTablaRol();
+
+                                } else {
+                                    Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                    alertN.setTitle("Informativo");
+                                    alertN.setHeaderText(null);
+                                    alertN.setContentText(dataJson.getString("mensaje"));
+                                    alertN.showAndWait();
+                                    this.rol = null;
+                                    this.cargarTablaRol();
+                                }
+                            } else {
+                                Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                                alertInactivo.setTitle("Informativo");
+                                alertInactivo.setHeaderText(null);
+                                alertInactivo.setContentText("El rol ya esta Activo...");
+                                alertInactivo.showAndWait();
+                                this.rol = null;
+                                this.cargarTablaRol();
+                            }
+                        } catch (JSONException ex) {
+                            Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (response == ButtonType.CANCEL) {
+                        this.rol = null;
+                        this.cargarTablaRol();
+                    }
+                });
+            }else{
+                Alert alertI = new Alert(Alert.AlertType.WARNING);
+                alertI.setTitle("Advertencia");
+                alertI.setHeaderText(null);
+                alertI.setContentText("El rol de Administrador no es puede modificar...");
+                alertI.showAndWait();
+            }
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Rol...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
-    private void desactivarRol(ActionEvent event) {                         //FALTAAAAAA
-        
-        this.cargarTablaRol();
+    private void desactivarRol(ActionEvent event) {                         
+    
+        if (this.rol != null) {
+
+            if (this.rol.getIdRol() != 201) {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Seguro que desea desactivar el rol?...");
+
+                alert.showAndWait().ifPresent(response -> {
+
+                    if (response == ButtonType.OK) {
+
+                        try {
+                            HashMap<String, Object> params = new LinkedHashMap<>();
+                            params.put("idRol", this.rol.getIdRol());
+
+                            String respuesta = Requests.post("/rol/eliminarRol/", params);
+
+                            String estado = this.rol.getEstatus();
+
+                            if ("Activo".equals(estado)) {
+
+                                JSONObject dataJson = new JSONObject(respuesta);
+
+                                if ((Boolean) dataJson.get("error") == false) {
+
+                                    Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                    alertC.setTitle("Informativo");
+                                    alertC.setHeaderText(null);
+                                    alertC.setContentText(dataJson.getString("mensaje"));
+                                    alertC.showAndWait();
+                                    this.rol = null;
+                                    this.cargarTablaRol();
+
+                                } else {
+                                    Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                    alertN.setTitle("Informativo");
+                                    alertN.setHeaderText(null);
+                                    alertN.setContentText(dataJson.getString("mensaje"));
+                                    alertN.showAndWait();
+                                    this.rol = null;
+                                    this.cargarTablaRol();
+                                }
+                            } else {
+                                Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                                alertInactivo.setTitle("Informativo");
+                                alertInactivo.setHeaderText(null);
+                                alertInactivo.setContentText("El rol ya esta Inactivo...");
+                                alertInactivo.showAndWait();
+                                this.rol = null;
+                                this.cargarTablaRol();
+                            }
+                        } catch (JSONException ex) {
+                            Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (response == ButtonType.CANCEL) {
+                        this.rol = null;
+                        this.cargarTablaRol();
+                    }
+                });
+            } else{
+                Alert alertI = new Alert(Alert.AlertType.WARNING);
+                alertI.setTitle("Advertencia");
+                alertI.setHeaderText(null);
+                alertI.setContentText("El rol de Administrador no es puede modificar...");
+                alertI.showAndWait();
+            }
+
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Rol...");
+            alertI.showAndWait();
+        }
     }
 
     

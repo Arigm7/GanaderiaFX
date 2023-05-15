@@ -80,10 +80,41 @@ public class EgresoHistorialController implements Initializable {
 
     @FXML
     private void buscar(ActionEvent event) {
+        
+        String buscar = this.txt_buscarEgreso.getText();
+
+        String respuesta = "";
+       
+        tbl_egreso.getItems().clear();
+
+        respuesta = Requests.get("/egreso/getHistorialById/"+buscar);
+        Gson gson = new Gson();
+
+        TypeToken<List<Egreso>> token = new TypeToken<List<Egreso>>() {
+        };
+
+        List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
+
+        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+        tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
+        tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+        tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        tcl_fechaMotificacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+        tcl_catalogoEgreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
+        tcl_conceptoEgreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoEgreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusEgreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioEgreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+
+        listaEgreso.forEach(e -> {
+            tbl_egreso.getItems().add(e);
+        });
     }
 
     @FXML
     private void limpiar(ActionEvent event) {
+        txt_buscarEgreso.setText("");
+        this.cargarTabla();
     }
 
     @FXML

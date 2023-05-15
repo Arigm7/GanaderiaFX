@@ -8,6 +8,8 @@ import ganaderiafx.modelo.pojos.Raza;
 import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class RazaController implements Initializable {
@@ -73,8 +78,28 @@ public class RazaController implements Initializable {
     }    
 
     @FXML
-    private void buscarRaza(ActionEvent event) {
-    }
+    private void buscarRaza(ActionEvent event) {   
+        String buscar = this.txt_buscarRaza.getText();
+
+        String respuesta = "";
+        tbl_raza.getItems().clear();
+
+        respuesta = Requests.get("/raza/getRazaById/" + buscar);
+        Gson gson = new Gson();
+
+        TypeToken<List<Raza>> token = new TypeToken<List<Raza>>() {
+        };
+
+        List<Raza> listaR = gson.fromJson(respuesta, token.getType());
+
+        tcl_idRaza.setCellValueFactory(new PropertyValueFactory<>("idRaza"));
+        tcl_nombreRaza.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcl_estatusRaza.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+
+        listaR.forEach(e -> {
+            tbl_raza.getItems().add(e);
+        });
+    }          
 
     @FXML
     private void nuevaRaza(ActionEvent event) {
@@ -96,6 +121,8 @@ public class RazaController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //this.cargarTabla();
+        this.raza=null;
     }
 
     @FXML
@@ -126,19 +153,155 @@ public class RazaController implements Initializable {
             alert.setContentText("Debe seleccionar una Raza...");
             alert.showAndWait();
         }
+        this.raza=null;
     }
 
     @FXML
     private void activarRaza(ActionEvent event) {
+        
+        if (this.raza != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("Seguro que desea activar la raza?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+                    
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idRaza", this.raza.getIdRaza());
+                        String respuesta = Requests.post("/raza/actualizarEstatus/", params);
+
+                        String estado = this.raza.getEstatus();
+
+                        if ("Inactivo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.raza = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.raza = null;
+                                this.cargarTabla();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("La raza ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.raza = null;
+                            this.cargarTabla();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.raza = null;
+                    this.cargarTabla();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar una Raza...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void desactivarRaza(ActionEvent event) {
+  
+        if (this.raza != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("Seguro que desea desactivar la raza?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idRaza", this.raza.getIdRaza());
+                        String respuesta = Requests.post("/raza/eliminarRaza/", params);
+
+                        String estado = this.raza.getEstatus();
+
+                        if ("Activo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.raza = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.raza = null;
+                                this.cargarTabla();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("La raza ya esta Inactiva...");
+                            alertInactivo.showAndWait();
+                            this.raza = null;
+                            this.cargarTabla();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.raza = null;
+                    this.cargarTabla();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar una Raza...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void limpiarRaza(ActionEvent event) {
         txt_buscarRaza.setText("");
+        this.cargarTabla();
     }
     
     public void cargarTabla(){

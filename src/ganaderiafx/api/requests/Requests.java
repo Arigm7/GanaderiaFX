@@ -30,7 +30,7 @@ public class Requests {
             conexionHTTP.setRequestMethod("GET");
             // Realizamos la invocación del servicio
             int codigoRespuesta = conexionHTTP.getResponseCode();
-            System.out.println("Codigo de respuesta obtenido en peticion: " + codigoRespuesta);
+            //System.out.println("Codigo de respuesta obtenido en peticion: " + codigoRespuesta);
             if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
                 resultado = convierteStreamCadena(conexionHTTP.getInputStream());
             } else {
@@ -60,7 +60,7 @@ public class Requests {
             outputSalida.write(getDataBytes(params));
             outputSalida.flush();
             outputSalida.close();
-            System.out.println(outputSalida);
+            //System.out.println(outputSalida);
             int codigoRespuesta = conexionHTTP.getResponseCode();
             System.out.println("Codigo de respuesta: " + codigoRespuesta);
             if (codigoRespuesta == HttpURLConnection.HTTP_OK) {

@@ -88,13 +88,39 @@ public class UsuarioController implements Initializable {
     }    
 
     @FXML
-    private void buscarUsuario(ActionEvent event) {                         //FALTA
-         
+    private void buscarUsuario(ActionEvent event) {                         
+        String buscar = this.txt_buscarUsuario.getText();
+
+        String respuesta = "";
+        tbl_usuario.getItems().clear();
+
+        respuesta = Requests.get("/usuario/getUsuarioById/"+buscar);
+        Gson gson = new Gson();
+
+        TypeToken<List<Usuario>> token = new TypeToken<List<Usuario>>() {
+        };
+
+        List<Usuario> listaUsuario = gson.fromJson(respuesta, token.getType());
+              
+        tcl_idUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+        tcl_nombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcl_apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
+        tcl_apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
+        tcl_usuarioUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        tcl_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        tcl_estatusUsuario.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_rolUsuario.setCellValueFactory(new PropertyValueFactory<>("idRol"));
+        
+        listaUsuario.forEach(e ->{
+            tbl_usuario.getItems().add(e);
+        });
+                 
     }
 
     @FXML
     private void limpiarUsuario(ActionEvent event) {
         txt_buscarUsuario.setText("");
+        this.cargarTabla();
     }
 
     @FXML
@@ -118,6 +144,7 @@ public class UsuarioController implements Initializable {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.cargarTabla();
+        this.usuario=null;
     }
 
     @FXML
@@ -149,15 +176,77 @@ public class UsuarioController implements Initializable {
             alert.showAndWait();
         }
          this.cargarTabla();
+         this.usuario=null;
     }
 
     @FXML
-    private void activarUsuario(ActionEvent event) {                        //FALTAAAAAAA
-        String respuesta = "";
-        if(this.usuario != null){
-            //respuesta = Requests.post();
+    private void activarUsuario(ActionEvent event) {                        
+        if (this.usuario != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("Seguro que desea activar el usuario?...");
+           
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idUsuario", this.usuario.getIdUsuario());
+                        String respuesta = Requests.post("/usuario/actualizarEstatus/", params);
+
+                        String estado = this.usuario.getEstatus();
+                        
+                        if ("Inactivo".equals(estado)) {
+                            
+                            JSONObject dataJson = new JSONObject(respuesta);
+                            
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.usuario = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.usuario = null;
+                                this.cargarTabla();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El usuario ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.usuario = null;
+                            this.cargarTabla();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.usuario = null;
+                    this.cargarTabla();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Usuario...");
+            alertI.showAndWait();
         }
-        this.cargarTabla();
     }
 
     @FXML
@@ -178,9 +267,10 @@ public class UsuarioController implements Initializable {
                         params.put("idUsuario",this.usuario.getIdUsuario());
                         String respuesta = Requests.post("/usuario/eliminarUsuario/", params);
                         
-                        JSONObject dataJson = new JSONObject(respuesta);
-                        
-                        if(this.usuario.getEstatus()=="Activo"){
+                        String estado = this.usuario.getEstatus();
+                        if("Activo".equals(estado)){
+                            
+                            JSONObject dataJson = new JSONObject(respuesta);
                             
                             if ((Boolean) dataJson.get("error") == false) {
 

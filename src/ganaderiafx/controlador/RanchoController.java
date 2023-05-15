@@ -12,6 +12,8 @@ import ganaderiafx.modelo.pojos.Rancho;
 import ganaderiafx.modelo.pojos.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +35,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * FXML Controller class
@@ -152,20 +157,182 @@ public class RanchoController implements Initializable {
 
     @FXML
     private void activarRancho(ActionEvent event) {
+         if (this.rancho != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea activar el rancho?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+                    
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idRancho", this.rancho.getIdRancho());
+                        
+                        String respuesta = Requests.post("/rancho/actualizarEstatus/", params);
+
+                        String estado = this.rancho.getEstatus();
+
+                        if ("Inactivo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.rancho = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.rancho = null;
+                                this.cargarTabla();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El rancho ya esta Activo...");
+                            alertInactivo.showAndWait();
+                            this.rancho = null;
+                            this.cargarTabla();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(RanchoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.rancho = null;
+                    this.cargarTabla();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Rancho...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void desactivarRancho(ActionEvent event) {
+ 
+        if (this.rancho != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Seguro que desea desactivar el rancho?...");
+
+            alert.showAndWait().ifPresent(response -> {
+
+                if (response == ButtonType.OK) {
+
+                    try {
+                        HashMap<String, Object> params = new LinkedHashMap<>();
+                        params.put("idRancho", this.rancho.getIdRancho());
+         
+                        String respuesta = Requests.post("/rancho/eliminarRancho/", params);
+
+                        String estado = this.rancho.getEstatus();
+
+                        if ("Activo".equals(estado)) {
+
+                            JSONObject dataJson = new JSONObject(respuesta);
+
+                            if ((Boolean) dataJson.get("error") == false) {
+
+                                Alert alertC = new Alert(Alert.AlertType.INFORMATION);
+                                alertC.setTitle("Informativo");
+                                alertC.setHeaderText(null);
+                                alertC.setContentText(dataJson.getString("mensaje"));
+                                alertC.showAndWait();
+                                this.rancho = null;
+                                this.cargarTabla();
+
+                            } else {
+                                Alert alertN = new Alert(Alert.AlertType.INFORMATION);
+                                alertN.setTitle("Informativo");
+                                alertN.setHeaderText(null);
+                                alertN.setContentText(dataJson.getString("mensaje"));
+                                alertN.showAndWait();
+                                this.rancho = null;
+                                this.cargarTabla();
+                            }
+                        } else {
+                            Alert alertInactivo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInactivo.setTitle("Informativo");
+                            alertInactivo.setHeaderText(null);
+                            alertInactivo.setContentText("El rancho ya esta Inactivo...");
+                            alertInactivo.showAndWait();
+                            this.rancho = null;
+                            this.cargarTabla();
+                        }
+                    } catch (JSONException ex) {
+                        Logger.getLogger(RanchoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (response == ButtonType.CANCEL) {
+                    this.rancho = null;
+                    this.cargarTabla();
+                }
+            });
+        } else {
+            Alert alertI = new Alert(Alert.AlertType.WARNING);
+            alertI.setTitle("Advertencia");
+            alertI.setHeaderText(null);
+            alertI.setContentText("Debe seleccionar un Rancho...");
+            alertI.showAndWait();
+        }
     }
 
     @FXML
     private void buscarRancho(ActionEvent event) {
+        
+        String buscar = this.txt_buscarRancho.getText();
+        System.out.println("AHHH BUSVAR"+buscar);
+        String respuesta = "";
+        tbl_rancho.getItems().clear();
+
+        respuesta = Requests.get("/rancho/getRanchoById/" + buscar);
+        Gson gson = new Gson();
+
+        TypeToken<List<Rancho>> token = new TypeToken<List<Rancho>>() {
+        };
+
+        List<Rancho> listaR = gson.fromJson(respuesta, token.getType());
+        
+        tcl_idRancho.setCellValueFactory(new PropertyValueFactory<>("idRancho"));
+        tcl_nombreRancho.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcl_coloniaRacho.setCellValueFactory(new PropertyValueFactory<>("colonia"));
+        tcl_calleRancho.setCellValueFactory(new PropertyValueFactory<>("calle"));
+        tcl_numExtRancho.setCellValueFactory(new PropertyValueFactory<>("numExt"));
+        tcl_estatusRancho.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioRancho.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        
+        listaR.forEach(e ->{
+            tbl_rancho.getItems().add(e);
+        });
     }
 
     @FXML
     private void limpiarRancho(ActionEvent event) {
         txt_buscarRancho.setText("");
+        this.cargarTabla();
     }
+    
     public void cargarTabla(){
         String respuesta = "";
         tbl_rancho.getItems().clear();

@@ -89,11 +89,14 @@ public class RegistrarUsuarioController implements Initializable {
     @FXML
     private void registrarUsuario(ActionEvent event) {
        
+        int position = this.cmb_rolRegistrar.getSelectionModel().getSelectedIndex();
+        
         if(this.txt_nombreRegistrar.getText().isEmpty() ||
                 this.txt_apellidoPaternoRegistrar.getText().isEmpty() || 
                 this.txt_apellidoMaternoRegistrar.getText().isEmpty() || 
                 this.txt_usuarioRegistrar.getText().isEmpty() ||
-                this.txt_passwordRegistrar.getText().isEmpty()){
+                this.txt_passwordRegistrar.getText().isEmpty() ||
+                position<=-1){
             
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al registrar un usuario");
@@ -101,26 +104,29 @@ public class RegistrarUsuarioController implements Initializable {
             alert.setContentText("Alguno de los campos se encuentra Vacio");
             alert.showAndWait();
         }else{
-            try{
-                int position = this.cmb_rolRegistrar.getSelectionModel().getSelectedIndex();
-                //System.out.print(position);
-                int rol = this.arrayID[position];
-
-                HashMap<String, Object> params = new LinkedHashMap<>();
-                params.put("nombre", this.txt_nombreRegistrar.getText());
-                params.put("apellidoPaterno", this.txt_apellidoPaternoRegistrar.getText());
-                params.put("apellidoMaterno", this.txt_apellidoMaternoRegistrar.getText());
-                params.put("usuario", this.txt_usuarioRegistrar.getText());
-                params.put("password", this.txt_passwordRegistrar.getText());
-                params.put("idRol", rol);
-
-                if(rol==201){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Advertencia");
-                    alert.setHeaderText(null);
-                    alert.setContentText("No puedes registrar un usuario como administrador, intenta asignarle otro rol");
-                    alert.showAndWait();
-                }else{
+            
+            try {
+                String verificacion = null;
+                String v = "0";
+                HashMap<String, Object> buscar = new LinkedHashMap<>();
+                buscar.put("usuario", this.txt_usuarioRegistrar.getText());
+                verificacion = Requests.post("/usuario/usuarioId/", buscar);
+                
+                JSONObject dataJsonV = new JSONObject(verificacion);
+                
+                if(dataJsonV.getString("mensaje").equals("0")){
+                    //int position = this.cmb_rolRegistrar.getSelectionModel().getSelectedIndex();
+                    
+                    int rol = this.arrayID[position];
+                    
+                    HashMap<String, Object> params = new LinkedHashMap<>();
+                    params.put("nombre", this.txt_nombreRegistrar.getText());
+                    params.put("apellidoPaterno", this.txt_apellidoPaternoRegistrar.getText());
+                    params.put("apellidoMaterno", this.txt_apellidoMaternoRegistrar.getText());
+                    params.put("usuario", this.txt_usuarioRegistrar.getText());
+                    params.put("password", this.txt_passwordRegistrar.getText());
+                    params.put("idRol", rol);
+                    
                     String respuesta = Requests.post("/usuario/registrarUsuario/", params);
 
                     JSONObject dataJson = new JSONObject(respuesta);
@@ -132,18 +138,25 @@ public class RegistrarUsuarioController implements Initializable {
                         alert.setContentText(dataJson.getString("mensaje"));
                         alert.showAndWait();
                         Window.close(event);
-                     
+
                     } else {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Advertencia");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
                         alert.setHeaderText(null);
                         alert.setContentText(dataJson.getString("mensaje"));
                         alert.showAndWait();
                     }
-                }  
-            }catch (JSONException ex) {
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("El usuario ya esta registrado...");
+                    alert.showAndWait();
+                }
+            } catch (JSONException ex) {
                 Logger.getLogger(RegistrarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+            }
         }
     }
 
@@ -155,7 +168,7 @@ public class RegistrarUsuarioController implements Initializable {
     
     private ObservableList getAllRoles(){
                 
-        String respuesta = Requests.get("/rol/getAllRol/");
+        String respuesta = Requests.get("/rol/getAllRolActivo/");
         Gson gson = new Gson();
         
         TypeToken<List<Rol>> token = new TypeToken<List<Rol>>(){   
