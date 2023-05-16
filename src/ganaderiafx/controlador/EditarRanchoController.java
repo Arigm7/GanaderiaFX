@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -33,16 +34,14 @@ public class EditarRanchoController implements Initializable {
     private Button btn_cancelarEditar;
     @FXML
     private TextField txt_numRanchoEditar;
-    @FXML
     private TextField txt_estatusRanchoEditar;
-    @FXML
     private TextField txt_usuarioRanchoEditar;
     @FXML
     private TextField txt_calleRanchoEditar;
-    @FXML
-    private Label lbl_nomUsuario_EditarRancho;
 
     Rancho rancho = null;
+    @FXML
+    private ComboBox<?> cmb_vaquero;
     /**
      * Initializes the controller class.
      */
@@ -72,8 +71,6 @@ public class EditarRanchoController implements Initializable {
         this.txt_nombreRanchoEditar.setText(rancho.getNombre());
         this.txt_coloniaRanchoEditar.setText(rancho.getColonia());
         this.txt_numRanchoEditar.setText(numero);
-        this.txt_estatusRanchoEditar.setText(rancho.getEstatus());
-        this.txt_usuarioRanchoEditar.setText(rancho.getUsuario());
         this.txt_calleRanchoEditar.setText(rancho.getCalle());
     }
 }

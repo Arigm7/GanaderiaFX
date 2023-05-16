@@ -17,8 +17,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="286.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_EditarIngreso" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="110.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -32,7 +30,6 @@
             <Label layoutX="60.0" layoutY="106.0" text="Observaciones:" />
             <Label layoutX="305.0" layoutY="43.0" text="Concepto:" />
             <TextField fx:id="txt_cantidadEditar" layoutX="60.0" layoutY="73.0" />
-            <TextField fx:id="txt_conceptoEditar" layoutX="305.0" layoutY="73.0" />
             <Button fx:id="btn_editarIngreso" layoutX="260.0" layoutY="232.0" mnemonicParsing="false" onAction="#editarIngreso" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #E39B39;" text="Editar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -53,9 +50,8 @@
             </Button>
             <TextArea fx:id="txt_observacionesEditar" layoutX="59.0" layoutY="136.0" prefHeight="77.0" prefWidth="189.0" />
             <Label layoutX="305.0" layoutY="106.0" text="Rancho:" />
-            <ComboBox fx:id="cmb_ranchoEditar" layoutX="304.0" layoutY="136.0" prefWidth="150.0" />
-            <Label layoutX="59.0" layoutY="6.0" text="ID:" />
-            <TextField fx:id="txt_idIngreso" editable="false" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="99.0" />
+            <ComboBox fx:id="cmb_ranchoEditar" layoutX="304.0" layoutY="136.0" prefWidth="150.0" promptText="Rancho" />
+            <ComboBox fx:id="cmb_conceptoEditar" layoutX="304.0" layoutY="73.0" prefWidth="150.0" promptText="Concepto" />
          </children>
       </Pane>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="508.0" style="-fx-background-color: #FDC982;">

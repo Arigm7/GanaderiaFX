@@ -17,8 +17,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="293.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_RegistrarCatalogo" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -49,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ComboBox fx:id="cmb_catalogoRegistrar" layoutX="59.0" layoutY="73.0" onAction="#catalogoRegistrar" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_catalogoRegistrar" layoutX="59.0" layoutY="73.0" prefWidth="150.0" promptText="Catálogo" />
          </children>
       </Pane>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="527.0" style="-fx-background-color: #9EF885;">

@@ -27,7 +27,7 @@
             <Label layoutX="61.0" layoutY="242.0" text="Usuario:" />
             <Label layoutX="305.0" layoutY="43.0" text="Contraseña:" />
             <Label layoutX="308.0" layoutY="106.0" text="Estatus:" />
-            <ComboBox fx:id="cmb_rolEditar" layoutX="307.0" layoutY="202.0" onAction="#rolEditar" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_rolEditar" layoutX="307.0" layoutY="202.0" onAction="#rolEditar" prefWidth="150.0" promptText="Rol" />
             <TextField fx:id="txt_nombreEditar" layoutX="60.0" layoutY="73.0" />
             <TextField fx:id="txt_apellidoPaternoEditar" layoutX="60.0" layoutY="132.0" />
             <TextField fx:id="txt_apellidoMaternoEditar" layoutX="58.0" layoutY="202.0" />
@@ -62,8 +62,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="293.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nombreUsuarioEditar" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />

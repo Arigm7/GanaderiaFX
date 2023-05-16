@@ -17,8 +17,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="285.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_RegistrarEgreso" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="116.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -32,7 +30,6 @@
             <Label layoutX="60.0" layoutY="106.0" text="Observaciones:" />
             <Label layoutX="305.0" layoutY="43.0" text="Concepto:" />
             <TextField fx:id="txt_motivoRegistrar" layoutX="60.0" layoutY="73.0" />
-            <TextField fx:id="txt_conceptoRegistrar" layoutX="310.0" layoutY="73.0" />
             <Button fx:id="btn_registrarEgreso" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onAction="#registrarEgreso" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #317B1D;" text="Registrar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +48,10 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextArea fx:id="txt_observacionesRegistro" layoutX="59.0" layoutY="132.0" prefHeight="80.0" prefWidth="404.0" />
+            <TextArea fx:id="txt_observacionesRegistro" layoutX="59.0" layoutY="132.0" prefHeight="80.0" prefWidth="197.0" />
+            <ComboBox fx:id="cmb_concepto" layoutX="305.0" layoutY="73.0" prefWidth="150.0" promptText="Concepto" />
+            <ComboBox fx:id="cmb_rancho" layoutX="305.0" layoutY="130.0" prefWidth="150.0" promptText="Rancho" />
+            <Label layoutX="305.0" layoutY="106.0" text="Rancho:" />
          </children>
       </Pane>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="520.0" style="-fx-background-color: #9EF885;">

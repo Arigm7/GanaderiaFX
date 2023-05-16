@@ -27,10 +27,7 @@ import javafx.scene.control.TextField;
 public class EditarIngresoController implements Initializable {
 
     @FXML
-    private Label lbl_nomUsuario_EditarIngreso;
-    @FXML
     private TextField txt_cantidadEditar;
-    @FXML
     private TextField txt_conceptoEditar;
     @FXML
     private Button btn_editarIngreso;
@@ -45,8 +42,9 @@ public class EditarIngresoController implements Initializable {
     String id="";
     @FXML
     private ComboBox<?> cmb_ranchoEditar;
-    @FXML
     private TextField txt_idIngreso;
+    @FXML
+    private ComboBox<?> cmb_conceptoEditar;
     /**
      * Initializes the controller class.
      */
@@ -75,10 +73,7 @@ public class EditarIngresoController implements Initializable {
         
        
         cantidad = Integer.toString(ingreso.getCantidad());
-        id = Integer.toString(ingreso.getIdIngreso());
-        this.txt_idIngreso.setText(id);
         this.txt_cantidadEditar.setText(cantidad);
-        this.txt_conceptoEditar.setText(ingreso.getConcepto());
         this.txt_observacionesEditar.setText(ingreso.getObservaciones());
         
     }

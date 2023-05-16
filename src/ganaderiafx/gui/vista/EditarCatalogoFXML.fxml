@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ganaderiafx.controlador.EditarCatalogoController">
    <children>
       <Pane layoutY="70.0" prefHeight="43.0" prefWidth="527.0" style="-fx-background-color: #FDC982;">
@@ -43,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ComboBox fx:id="cmb_catalogoEditar" layoutX="59.0" layoutY="73.0" onAction="#catalogoEditar" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_catalogoEditar" layoutX="59.0" layoutY="73.0" prefWidth="150.0" promptText="Catálogo" />
          </children>
       </Pane>
       <Pane prefHeight="70.0" prefWidth="527.0" style="-fx-background-color: #E8A12D;">
@@ -53,8 +52,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="293.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_EditarCatalogo" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />

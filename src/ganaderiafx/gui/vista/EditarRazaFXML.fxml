@@ -17,8 +17,6 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="293.0" layoutY="27.0" text="Usuario:" textFill="WHITE" />
-            <Label fx:id="lbl_nomUsuario_EditarRaza" layoutX="336.0" layoutY="27.0" prefHeight="17.0" prefWidth="125.0" textFill="WHITE" />
             <Label layoutX="23.0" layoutY="22.0" text="Villa Ganadera CAMPO´S" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -31,7 +29,7 @@
             <Label layoutX="59.0" layoutY="43.0" text="Nombre:" />
             <Label layoutX="302.0" layoutY="43.0" text="Estatus:" />
             <TextField fx:id="txt_nombreRazaEditar" layoutX="60.0" layoutY="73.0" />
-            <TextField fx:id="txt_estatusRazaEditar" disable="true" layoutX="293.0" layoutY="73.0" />
+            <TextField fx:id="txt_estatusRazaEditar" editable="false" layoutX="293.0" layoutY="73.0" />
             <Button fx:id="btn_editarRaza" layoutX="257.0" layoutY="136.0" mnemonicParsing="false" onAction="#editarRaza" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #E39B39;" text="Editar" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

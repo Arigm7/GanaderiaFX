@@ -308,7 +308,7 @@ public class CatalogoController implements Initializable {
 
             RegistrarRolController ctrl = loader.getController();
             ctrl.setData(null);
-
+            
             Scene scene = new Scene(formRolRegistrar);
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Rol)");

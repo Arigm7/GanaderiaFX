@@ -26,8 +26,6 @@ public class EditarRolController implements Initializable {
     private Button btn_cancelarEditar;
     @FXML
     private Pane pnl_busqueda;
-    @FXML
-    private Label lbl_nomUsuario_EditarRol;
 
     Rol rol = null;
     Boolean isnew=false;

@@ -53,8 +53,6 @@ public class RegistrarUsuarioController implements Initializable {
     private Button btn_registrarUsuario;
     @FXML
     private Button btn_cancelarRegistro;
-    @FXML
-    private Label lbl_nomUsuario_RegistrarUsuario;
 
     Usuario usuario = null;                            
     Rol rol = null;

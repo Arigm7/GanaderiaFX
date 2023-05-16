@@ -33,8 +33,6 @@ public class RegistrarRazaController implements Initializable {
     private Button btn_registrarRaza;
     @FXML
     private Button btn_cancelarRegistro;
-    @FXML
-    private Label lbl_nomUsuario_RegistrarRaza;
 
     Raza raza = null;
 

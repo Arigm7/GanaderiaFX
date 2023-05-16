@@ -28,7 +28,6 @@ public class EditarEgresoController implements Initializable {
 
     @FXML
     private TextField txt_motivoEditar;
-    @FXML
     private TextField txt_conceptoEditar;
     @FXML
     private Button btn_editarEgreso;
@@ -36,16 +35,15 @@ public class EditarEgresoController implements Initializable {
     private Button btn_cancelarEgreso;
     @FXML
     private TextArea txt_observacionesEditar;
-    @FXML
-    private Label lbl_nomUsuario_EditarEgreso;
-    @FXML
     private TextField txt_idEgreso;
 
     Egreso egreso = null;
     Boolean isnew=false;
     String id = "";
     @FXML
-    private ComboBox<?> cmb_ramcho;
+    private ComboBox<?> cmb_rancho;
+    @FXML
+    private ComboBox<?> cmb_concepto;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,9 +67,7 @@ public class EditarEgresoController implements Initializable {
     }
     
     public void cargarEgreso(){
-        id = Integer.toString(egreso.getIdEgreso());
-        this.txt_idEgreso.setText(id);
-        this.txt_conceptoEditar.setText(egreso.getConcepto());
+   
         this.txt_observacionesEditar.setText(egreso.getObservaciones());
         this.txt_motivoEditar.setText(egreso.getMotivo());
         

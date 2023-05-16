@@ -33,8 +33,6 @@ import org.json.JSONObject;
 public class RegistrarRanchoController implements Initializable {
 
     @FXML
-    private Label lbl_nomUsuario_Rancho;
-    @FXML
     private TextField txt_nombreRancho;
     @FXML
     private TextField txt_coloniaRancho;
@@ -82,28 +80,28 @@ public class RegistrarRanchoController implements Initializable {
        int position = this.cmb_vaquero.getSelectionModel().getSelectedIndex();
         if(this.txt_nombreRancho.getText().isEmpty() ||
                 this.txt_coloniaRancho.getText().isEmpty() || 
-                this.txt_numRancho.getText().isEmpty() || 
+                this.txt_numRancho.getText().isEmpty() || !this.txt_numRancho.getText().substring(0, 1).matches("[0-9]*")|| 
                 this.txt_calleRancho.getText().isEmpty()||
                 position<=-1){
             
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error al registrar un rancho");
             alert.setHeaderText(null);
-            alert.setContentText("Alguno de los campos se encuentra Vacio");
+            alert.setContentText("Alguno de los campos se encuentra Vacio O el número del rancho es un caracter");
             alert.showAndWait();
         }else{
             
             try {
-                String verificacion = null;
-                String v = "0";
+                String postVerificacion = null;
+                String estaRancho = "0";
                 HashMap<String, Object> buscar = new LinkedHashMap<>();
                 buscar.put("nombre", this.txt_nombreRancho.getText());
                
-                verificacion = Requests.post("/rancho/ranchoId/", buscar);
+                postVerificacion = Requests.post("/rancho/ranchoId/", buscar);
+                JSONObject resPrimerPost = new JSONObject(postVerificacion);
+                estaRancho = (String) resPrimerPost.get("mensaje");
                 
-                JSONObject dataJsonV = new JSONObject(verificacion);
-                
-                if(dataJsonV.getString("mensaje").equals("0")){
+                if(estaRancho.equals("0")){
                     
                     int usuario = this.arrayID[position];
                     
@@ -166,5 +164,24 @@ public class RegistrarRanchoController implements Initializable {
         comboBoxList=FXCollections.observableArrayList(lista);
         System.out.print(comboBoxList);
         return comboBoxList;
+    }
+    
+    private String verificar(){
+        String v = "0";
+        try {
+            String verificacion = null;
+            
+            HashMap<String, Object> buscar = new LinkedHashMap<>();
+            buscar.put("nombre", this.txt_nombreRancho.getText());
+            
+            verificacion = Requests.post("/rancho/ranchoId/", buscar);
+            
+            JSONObject dataJsonV = new JSONObject(verificacion);
+            
+            v = dataJsonV.getString("mensaje");
+        } catch (JSONException ex) {
+            Logger.getLogger(RegistrarRanchoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return v;
     }
 }

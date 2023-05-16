@@ -19,8 +19,6 @@ public class EditarRazaController implements Initializable {
     @FXML
     private Pane pnl_busqueda;
     @FXML
-    private Label lbl_nomUsuario_EditarRaza;
-    @FXML
     private TextField txt_nombreRazaEditar;
     @FXML
     private TextField txt_estatusRazaEditar;

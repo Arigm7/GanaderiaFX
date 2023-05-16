@@ -25,8 +25,6 @@ public class EditarCatalogoController implements Initializable {
     private Button btn_cancelarEditar;
     @FXML
     private ComboBox<?> cmb_catalogoEditar;
-    @FXML
-    private Label lbl_nomUsuario_EditarCatalogo;
 
     CatalogoConcepto catalogo = null;
     Boolean isnew=false;
@@ -52,9 +50,6 @@ public class EditarCatalogoController implements Initializable {
         Window.close(event);
     }
 
-    @FXML
-    private void catalogoEditar(ActionEvent event) {
-    }
     
     public void cargarCatalogo(){                                   //FALTAAAAAAAAA
         
