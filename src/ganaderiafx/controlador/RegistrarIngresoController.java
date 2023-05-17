@@ -44,8 +44,6 @@ public class RegistrarIngresoController implements Initializable {
     private Button btn_cancelarIngreso;
     @FXML
     private TextArea txt_observacionesRegistro;
-
-   
     @FXML
     private ComboBox<String> cmb_concepto;
     @FXML

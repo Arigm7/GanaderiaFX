@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import ganaderiafx.api.requests.Requests;
 import ganaderiafx.modelo.pojos.Rol;
 import ganaderiafx.modelo.pojos.Usuario;
+import ganaderiafx.utils.VentanaAlert;
 import ganaderiafx.utils.Window;
 import java.net.URL;
 import java.util.HashMap;
@@ -89,182 +90,105 @@ public class EditarUsuarioController implements Initializable {
     @FXML
     private void editarUsuario(ActionEvent event) {
         
+        VentanaAlert alert = new VentanaAlert();
+        
         if (this.usuario != null) {
-            
-            //int position = this.cmb_rolEditar.getSelectionModel().getSelectedIndex();
-            
+
+            int position = this.cmb_rolEditar.getSelectionModel().getSelectedIndex();
+
             if (this.txt_nombreEditar.getText().isEmpty()
                     || this.txt_apellidoPaternoEditar.getText().isEmpty()
                     || this.txt_apellidoMaternoEditar.getText().isEmpty()
-                    || this.txt_usuarioEditar.getText().isEmpty()) {
+                    || this.txt_usuarioEditar.getText().isEmpty()
+                    || position <= -1) {
                 
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error al actualizar el usuario");
-                alert.setHeaderText(null);
-                alert.setContentText("Alguno de los campos se encuentra Vacio");
-                alert.showAndWait();
+                alert.warning("Campos Vacios", "Alguno de los campos se encuentra Vacios");
             } else {
+                
+                int rol = this.arrayID[position];
 
-                int position = this.cmb_rolEditar.getSelectionModel().getSelectedIndex();
-                //int rol = this.arrayID[position];
+                HashMap<String, Object> params = new LinkedHashMap<>();
+                params.put("idUsuario", usuario.getIdUsuario());
+                params.put("nombre", this.txt_nombreEditar.getText());
+                params.put("apellidoPaterno", this.txt_apellidoPaternoEditar.getText());
+                params.put("apellidoMaterno", this.txt_apellidoMaternoEditar.getText());
+                params.put("usuario", this.txt_usuarioEditar.getText());
+                params.put("password", this.txt_passwordEditar.getText());
+                params.put("estatus", this.txt_estatusEditar.getText());
+                params.put("idRol", rol);
 
-                if(position<=0){
-                    HashMap<String, Object> params = new LinkedHashMap<>();
-                    params.put("idUsuario", usuario.getIdUsuario());
-                    params.put("nombre", this.txt_nombreEditar.getText());
-                    params.put("apellidoPaterno", this.txt_apellidoPaternoEditar.getText());
-                    params.put("apellidoMaterno", this.txt_apellidoMaternoEditar.getText());
-                    params.put("usuario", this.txt_usuarioEditar.getText());
-                    params.put("password", this.txt_passwordEditar.getText());
-                    params.put("estatus", this.txt_estatusEditar.getText());
-                    params.put("idRol", this.usuario.getIdRol());
+                Alert alertI = new Alert(Alert.AlertType.CONFIRMATION);
+                alertI.setTitle("Confirmación");
+                alertI.setHeaderText(null);
+                alertI.setContentText("Seguro que desea actualizar el usuario?...");
 
-                   
-                    Alert alertI = new Alert(Alert.AlertType.CONFIRMATION);
-                    alertI.setTitle("Confirmación");
-                    alertI.setHeaderText(null);
-                    alertI.setContentText("Seguro que desea actualizar el usuario?...");
-
-                    alertI.showAndWait().ifPresent(response -> {
-                        if (response == ButtonType.OK) {
-                            try {
+                alertI.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        try {
+                            if (this.usuario.getIdRol() != 201) {
                                 String respuesta = Requests.post("/usuario/actualizarUsuario/", params);
 
                                 JSONObject dataJson = new JSONObject(respuesta);
 
                                 if ((Boolean) dataJson.get("error") == false) {
-                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setTitle("Informativo");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText(dataJson.getString("mensaje"));
-                                    alert.showAndWait();
+                                    alert.information("Informativo", dataJson.getString("mensaje"));
                                     this.usuario = null;
                                     Window.close(event);
 
                                 } else {
-                                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                                    alert.setTitle("Advertencia");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText(dataJson.getString("mensaje"));
-                                    alert.showAndWait();
+                                    alert.warning("Advertencia", dataJson.getString("mensaje"));
                                     this.usuario = null;
+                                    Window.close(event);
                                 }
-                            } catch (JSONException ex) {
-                                Logger.getLogger(EditarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                        }
-                        if (response == ButtonType.CANCEL) {
-                            this.usuario = null;
-                        }
-                    });
-
-                }else{
-                    int rol = this.arrayID[position];
-                    HashMap<String, Object> params = new LinkedHashMap<>();
-                    params.put("idUsuario", usuario.getIdUsuario());
-                    params.put("nombre", this.txt_nombreEditar.getText());
-                    params.put("apellidoPaterno", this.txt_apellidoPaternoEditar.getText());
-                    params.put("apellidoMaterno", this.txt_apellidoMaternoEditar.getText());
-                    params.put("usuario", this.txt_usuarioEditar.getText());
-                    params.put("password", this.txt_passwordEditar.getText());
-                    params.put("estatus", this.txt_estatusEditar.getText());
-                    params.put("idRol", rol);
-
-                    if (rol == 201) {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Advertencia");
-                        alert.setHeaderText(null);
-                        alert.setContentText("No puedes actualizar un usuario como administrador, intenta asignarle otro rol");
-                        alert.showAndWait();
-                    } else {
-
-                        Alert alertI = new Alert(Alert.AlertType.CONFIRMATION);
-                        alertI.setTitle("Confirmación");
-                        alertI.setHeaderText(null);
-                        alertI.setContentText("Seguro que desea actualizar el usuario?...");
-
-                        alertI.showAndWait().ifPresent(response -> {
-                            if (response == ButtonType.OK) {
-                                try {
-                                    String respuesta = Requests.post("/usuario/actualizarUsuario/", params);
-
-                                    JSONObject dataJson = new JSONObject(respuesta);
-
-                                    if ((Boolean) dataJson.get("error") == false) {
-                                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                        alert.setTitle("Informativo");
-                                        alert.setHeaderText(null);
-                                        alert.setContentText(dataJson.getString("mensaje"));
-                                        alert.showAndWait();
-                                        this.usuario = null;
-                                        Window.close(event);
-
-                                    } else {
-                                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                                        alert.setTitle("Advertencia");
-                                        alert.setHeaderText(null);
-                                        alert.setContentText(dataJson.getString("mensaje"));
-                                        alert.showAndWait();
-                                        this.usuario = null;
-                                    }
-                                } catch (JSONException ex) {
-                                    Logger.getLogger(EditarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-
-                            }
-                            if (response == ButtonType.CANCEL) {
-                                Window.close(event);
-                                this.cargarUsuario();
+                            } else {
+                                alert.warning("Advertencia","Solo personal autorizado puede editar este usuario...");
                                 this.usuario = null;
+                                Window.close(event);
                             }
-                        });
+                        } catch (JSONException ex) {
+                            Logger.getLogger(EditarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
+                    if (response == ButtonType.CANCEL) {
+                        this.usuario = null;
+                        Window.close(event);
+                    }
+                });
             }
-        }else{
-            Alert alertI = new Alert(Alert.AlertType.WARNING);
-            alertI.setTitle("Advertencia");
-            alertI.setHeaderText(null);
-            alertI.setContentText("Debe seleccionar un Usuario...");
-            alertI.showAndWait();
-        }   
+        } else {
+            alert.warning("Advertencia","Debe seleccionar un Usuario...");
+        }
     }
 
     @FXML
     private void cancelarEditar(ActionEvent event) {
-         Window.close(event);
-         this.cargarUsuario();
-         this.usuario=null;
+        Window.close(event);
+        this.cargarUsuario();
+        this.usuario = null;
     }
-    
-    public void cargarUsuario(){
-        
-        if(usuario.getIdRol()==201){
+
+    public void cargarUsuario() {
+
+        if (this.usuario.getIdRol() != 201) {
             this.txt_nombreEditar.setText(usuario.getNombre());
             this.txt_apellidoPaternoEditar.setText(usuario.getApellidoPaterno());
             this.txt_apellidoMaternoEditar.setText(usuario.getApellidoMaterno());
             this.txt_usuarioEditar.setText(usuario.getUsuario());
-            this.txt_passwordEditar.setEditable(false);
-            //this.txt_passwordEditar.setText(usuario.getPassword());
             this.txt_estatusEditar.setText(usuario.getEstatus());
-            
-        }else{
+        } else {
             this.txt_nombreEditar.setText(usuario.getNombre());
             this.txt_apellidoPaternoEditar.setText(usuario.getApellidoPaterno());
             this.txt_apellidoMaternoEditar.setText(usuario.getApellidoMaterno());
-            this.txt_usuarioEditar.setText(usuario.getUsuario());
-            //this.txt_passwordEditar.setText(usuario.getPassword());
             this.txt_estatusEditar.setText(usuario.getEstatus());
-        }     
+        }
     }
-    
-    private ObservableList getAllRoles(){
-                
-        String respuesta = Requests.get("/rol/getAllRol/");
+
+    private ObservableList getAllRoles() {
+
+        String respuesta = Requests.get("/rol/getAllRolActivo/");
         Gson gson = new Gson();
-        
-        TypeToken<List<Rol>> token = new TypeToken<List<Rol>>(){   
+
+        TypeToken<List<Rol>> token = new TypeToken<List<Rol>>() {
         };
 
         List<Rol> listaRoles = gson.fromJson(respuesta, token.getType());

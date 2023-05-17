@@ -50,24 +50,10 @@ public class RegistrarRanchoController implements Initializable {
     Rancho rancho = null;
     private Integer[] arrayID;
     private ObservableList<Usuario> comboBoxList;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboBoxList = getAllRoles();
-
-        List<String> nombreRoles = new LinkedList<String>();
-        Integer idRoles[] = new Integer[comboBoxList.size()];
-        int i = 0;
-        for (Usuario usuario : comboBoxList) {
-            nombreRoles.add(usuario.getNombre());
-            idRoles[i] = usuario.getIdUsuario();
-            i++;
-        }
-        this.arrayID = idRoles;
-        ObservableList<String> ObsnombreRoles = FXCollections.observableArrayList(nombreRoles);
-        cmb_vaquero.setItems(ObsnombreRoles);
+        this.vaquero();
     }    
 
     public void setData(Rancho rancho){  
@@ -106,13 +92,14 @@ public class RegistrarRanchoController implements Initializable {
                     int usuario = this.arrayID[position];
                     
                     HashMap<String, Object> params = new LinkedHashMap<>();
+                    params.put("idRancho", this.rancho.getIdRancho());
                     params.put("nombre", this.txt_nombreRancho.getText());
                     params.put("colonia", this.txt_coloniaRancho.getText());
                     params.put("calle", this.txt_calleRancho.getText());
                     params.put("numExt", this.txt_numRancho.getText());
                     params.put("idUsuario", usuario);
 
-                    String respuesta = Requests.post("/rancho/registrarRancho/", params);
+                    String respuesta = Requests.post("/rancho/actualizarRancho/", params);
 
                     JSONObject dataJson = new JSONObject(respuesta);
 
@@ -183,5 +170,21 @@ public class RegistrarRanchoController implements Initializable {
             Logger.getLogger(RegistrarRanchoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return v;
+    }
+    
+    public void vaquero() {
+        comboBoxList = getAllRoles();
+
+        List<String> nombreRoles = new LinkedList<String>();
+        Integer idRoles[] = new Integer[comboBoxList.size()];
+        int i = 0;
+        for (Usuario usuario : comboBoxList) {
+            nombreRoles.add(usuario.getNombre());
+            idRoles[i] = usuario.getIdUsuario();
+            i++;
+        }
+        this.arrayID = idRoles;
+        ObservableList<String> ObsnombreRoles = FXCollections.observableArrayList(nombreRoles);
+        cmb_vaquero.setItems(ObsnombreRoles);
     }
 }

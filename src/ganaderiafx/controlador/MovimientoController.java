@@ -172,7 +172,7 @@ public class MovimientoController implements Initializable {
                 
                 EditarIngresoController ctrl = loader.getController();
                 ctrl.setData(this.ingreso,false);
-                
+                ctrl.setDataUsuario(nombreUsuario);
                 Scene scene = new Scene(formIngresoEditar);
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Ingreso)");
@@ -369,7 +369,7 @@ public class MovimientoController implements Initializable {
 
                 EditarEgresoController ctrl = loader.getController();
                 ctrl.setData(this.egreso, true);
-
+                ctrl.setDataUsuario(nombreUsuario);
                 Scene scene = new Scene(formEgresoEditar);
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Egreso)");
