@@ -34,7 +34,7 @@ public class RegistrarRolController implements Initializable {
     private TextField txt_nombreRegistro;
 
     Rol rol = null;
-    
+    public CatalogoController c;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,7 +47,7 @@ public class RegistrarRolController implements Initializable {
     
     @FXML
     private void registrarRol(ActionEvent event) {
-
+        
         if (this.txt_nombreRegistro.getText().isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -98,6 +98,7 @@ public class RegistrarRolController implements Initializable {
                     alert.setContentText("El rol ya esta registrado...");
                     alert.showAndWait();
                 }
+                //c.cargarTablaRol();
             } catch (JSONException ex) {
                 Logger.getLogger(RegistrarRolController.class.getName()).log(Level.SEVERE, null, ex);
             }

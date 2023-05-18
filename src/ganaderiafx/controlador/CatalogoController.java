@@ -577,7 +577,10 @@ public class CatalogoController implements Initializable {
     }
 
     @FXML
-    private void buscarId(ActionEvent event) {                                  //FALTAAAAAAAAAA
+    private void buscarId(ActionEvent event) {   
+        String buscar = this.txt_buscarId.getText();
+        this.cargarTablaCatalogoById(buscar);
+        this.cargarTablaRolById(buscar);
     }
 
     @FXML
@@ -585,5 +588,51 @@ public class CatalogoController implements Initializable {
         txt_buscarId.setText("");
         this.cargarTablaCatalogo();
         this.cargarTablaRol();
+    }
+    
+    
+        public void cargarTablaCatalogoById(String buscar){
+        String respuesta = "";
+        tbl_catalogo.getItems().clear();
+        
+        respuesta = Requests.get("/catalogoConcepto/getCatalogoById/"+buscar);
+        Gson gson = new Gson();
+        
+        TypeToken<List<CatalogoConcepto>> token = new TypeToken<List<CatalogoConcepto>>(){   
+        };
+
+        List<CatalogoConcepto> listaCatalogo = gson.fromJson(respuesta, token.getType());
+        
+        tcl_idCatalogo.setCellValueFactory(new PropertyValueFactory<>("idCatalogoConcepto"));
+        tcl_catalogo.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
+        tcl_conceptoCatalogo.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tbl_estatusCatalogo.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+      
+        
+        listaCatalogo.forEach(e ->{
+            tbl_catalogo.getItems().add(e);
+        });
+    }
+    
+    public void cargarTablaRolById(String buscar){
+        String respuesta = "";
+        tbl_rol.getItems().clear();
+        
+        respuesta = Requests.get("/rol/getRolById/"+buscar);
+        Gson gson = new Gson();
+        
+        TypeToken<List<Rol>> token = new TypeToken<List<Rol>>(){   
+        };
+
+        List<Rol> listaRol = gson.fromJson(respuesta, token.getType());
+        
+        tcl_idRol.setCellValueFactory(new PropertyValueFactory<>("idRol"));
+        tcl_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcl_estatus.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        
+        
+        listaRol.forEach(e ->{
+            tbl_rol.getItems().add(e);
+        });
     }
 }

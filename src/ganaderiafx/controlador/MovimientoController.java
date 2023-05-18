@@ -128,6 +128,11 @@ public class MovimientoController implements Initializable {
 
     @FXML
     private void buscarMovimiento(ActionEvent event) {
+        
+        String buscar = this.txt_buscarMovimiento.getText();
+        this.cargarTablaIngresoById(buscar);
+        this.cargarTablaEgresoById(buscar);
+ 
     }
 
     @FXML
@@ -601,6 +606,65 @@ public class MovimientoController implements Initializable {
         if(tbl_egreso.getSelectionModel().getSelectedItem() != null){
             egreso = tbl_egreso.getSelectionModel().getSelectedItem();
         }
+    }
+    
+    
+    
+    public void cargarTablaIngresoById(String buscar){
+        String respuesta = "";
+        tbl_ingresos.getItems().clear();
+        
+        respuesta = Requests.get("/ingreso/getIngresoById/"+buscar);
+        Gson gson = new Gson();
+        
+        TypeToken<List<Ingreso>> token = new TypeToken<List<Ingreso>>(){   
+        };
+
+        List<Ingreso> listaIngreso = gson.fromJson(respuesta, token.getType());
+        
+        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+        tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+        tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        tcl_fechaModificacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+        tcl_catalogoIngreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
+        tcl_conceptoIngreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoIngreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusIngreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioIngreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+
+        
+        listaIngreso.forEach(e ->{
+            tbl_ingresos.getItems().add(e);
+        });
+    }
+    
+    public void cargarTablaEgresoById(String buscar) {
+        String respuesta = "";
+        tbl_egreso.getItems().clear();
+
+        respuesta = Requests.get("/egreso/getEgresoById/"+buscar);
+        Gson gson = new Gson();
+
+        TypeToken<List<Egreso>> token = new TypeToken<List<Egreso>>() {
+        };
+
+        List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
+
+        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+        tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
+        tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+        tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        tcl_fechaMotificacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaModificacion"));
+        tcl_catalogoEgreso.setCellValueFactory(new PropertyValueFactory<>("catalogo"));
+        tcl_conceptoEgreso.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        tcl_ranchoEgreso.setCellValueFactory(new PropertyValueFactory<>("rancho"));
+        tcl_estatusEgreso.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        tcl_usuarioEgreso.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+
+        listaEgreso.forEach(e -> {
+            tbl_egreso.getItems().add(e);
+        });
     }
     
 }
