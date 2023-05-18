@@ -90,16 +90,15 @@ public class RegistrarRanchoController implements Initializable {
                 if(estaRancho.equals("0")){
                     
                     int usuario = this.arrayID[position];
-                    
+                
                     HashMap<String, Object> params = new LinkedHashMap<>();
-                    params.put("idRancho", this.rancho.getIdRancho());
                     params.put("nombre", this.txt_nombreRancho.getText());
                     params.put("colonia", this.txt_coloniaRancho.getText());
                     params.put("calle", this.txt_calleRancho.getText());
                     params.put("numExt", this.txt_numRancho.getText());
                     params.put("idUsuario", usuario);
 
-                    String respuesta = Requests.post("/rancho/actualizarRancho/", params);
+                    String respuesta = Requests.post("/rancho/registrarRancho/", params);
 
                     JSONObject dataJson = new JSONObject(respuesta);
 
