@@ -21,10 +21,10 @@
       </Pane>
       <Pane layoutY="117.0" prefHeight="208.0" prefWidth="527.0">
          <children>
-            <Label layoutX="59.0" layoutY="43.0" text="Nombre:" />
+            <Label layoutX="59.0" layoutY="43.0" text="Nombre':" />
             <Label layoutX="302.0" layoutY="43.0" text="Estatus:" />
             <TextField fx:id="txt_estatusRegistrar" editable="false" layoutX="293.0" layoutY="73.0" text="Activo" />
-            <Button fx:id="btn_registrarRol" layoutX="248.0" layoutY="136.0" mnemonicParsing="false" onAction="#registrarRol" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #317B1D;" text="Registrar" textFill="WHITE">
+            <Button fx:id="btn_registrarRol" layoutX="248.0" layoutY="136.0" mnemonicParsing="false" onAction="#registrarRol" prefHeight="27.0" prefWidth="91.0" text="Registrar">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +33,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_cancelarRegistro" layoutX="391.0" layoutY="137.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #EC7063;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="btn_cancelarRegistro" layoutX="391.0" layoutY="137.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="25.0" prefWidth="91.0" text="Cancelar">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>

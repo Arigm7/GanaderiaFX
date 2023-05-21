@@ -25,6 +25,8 @@
           <Menu mnemonicParsing="false" text="Movimientos">
             <items>
               <MenuItem fx:id="mi_IngresoEgreso" mnemonicParsing="false" onAction="#abrirlIngresoEgreso" text="Ingresos y Egresos" />
+                <MenuItem fx:id="mi_ingreso_historial" mnemonicParsing="false" onAction="#abrirl_IngresoHistorial" text="Historial Ingresos" />
+                  <MenuItem fx:id="mi_egreso_historial" mnemonicParsing="false" onAction="#abrirl_EgresoHistorial" text="Historial Egresos" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Administración de Usuarios">
@@ -36,12 +38,6 @@
                <items>
                   <MenuItem fx:id="mi_catalogos" mnemonicParsing="false" onAction="#abrirCatalogo" text="Catalogos" />
                </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Historial de Movimientos">
-              <items>
-                <MenuItem fx:id="mi_ingreso_historial" mnemonicParsing="false" onAction="#abrirl_IngresoHistorial" text="Ingresos" />
-                  <MenuItem fx:id="mi_egreso_historial" mnemonicParsing="false" onAction="#abrirl_EgresoHistorial" text="Egresos" />
-              </items>
             </Menu>
         </menus>
       </MenuBar>

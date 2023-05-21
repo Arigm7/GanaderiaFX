@@ -58,8 +58,6 @@ public class MovimientoController implements Initializable {
     @FXML
     private TableView<Ingreso> tbl_ingresos;
     @FXML
-    private TableColumn<Ingreso, Integer> tcl_idIngreso;
-    @FXML
     private TableColumn<Ingreso, Integer> tcl_cantidadIngreso;
     @FXML
     private TableColumn<Ingreso, String> tcl_observacionesIngreso;
@@ -81,8 +79,6 @@ public class MovimientoController implements Initializable {
     private Button btn_desactivarEgreso;
     @FXML
     private TableView<Egreso> tbl_egreso;
-    @FXML
-    private TableColumn<Egreso, Integer> tcl_idEgreso;
     @FXML
     private TableColumn<Egreso, String> tcl_motivoEgreso;
     @FXML
@@ -158,11 +154,13 @@ public class MovimientoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Ingreso)");
             stage.setResizable(false);
-            stage.show();  
+            stage.showAndWait();
+            this.ingreso = null;
+            this.cargarTablaIngreso(); 
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTablaIngreso();
+        
     }
 
     @FXML
@@ -182,7 +180,9 @@ public class MovimientoController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Ingreso)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.ingreso = null;
+                this.cargarTablaIngreso();
             } catch (IOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -192,9 +192,7 @@ public class MovimientoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un Ingreso...");
             alert.showAndWait();
-        }
-         this.cargarTablaIngreso();
-        
+        }        
     }
 
     @FXML
@@ -355,11 +353,13 @@ public class MovimientoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Egresos)");
             stage.setResizable(false);
-            stage.show();  
+            stage.showAndWait();
+            this.egreso = null;
+            this.cargarTablaEgreso();
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTablaEgreso();
+        
     }
 
     @FXML
@@ -379,7 +379,9 @@ public class MovimientoController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Egreso)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.egreso = null;
+                this.cargarTablaEgreso();
             } catch (IOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -390,7 +392,7 @@ public class MovimientoController implements Initializable {
             alert.setContentText("Debe seleccionar un Egreso...");
             alert.showAndWait();
         }
-        this.cargarTablaIngreso();
+        
     }
 
     @FXML
@@ -547,7 +549,7 @@ public class MovimientoController implements Initializable {
 
         List<Ingreso> listaIngreso = gson.fromJson(respuesta, token.getType());
         
-        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+        
         tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
@@ -576,7 +578,7 @@ public class MovimientoController implements Initializable {
 
         List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
 
-        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+       
         tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
@@ -622,7 +624,7 @@ public class MovimientoController implements Initializable {
 
         List<Ingreso> listaIngreso = gson.fromJson(respuesta, token.getType());
         
-        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+       
         tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
@@ -651,7 +653,7 @@ public class MovimientoController implements Initializable {
 
         List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
 
-        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+       
         tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));

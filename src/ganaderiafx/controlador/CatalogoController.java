@@ -115,11 +115,13 @@ public class CatalogoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Catalogo)");
             stage.setResizable(false);
-            stage.show();
+            stage.showAndWait();
+            this.catalogo = null;
+            this.cargarTablaCatalogo();
         } catch (IOException ex) {
             Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTablaCatalogo();
+        
     }
 
     @FXML
@@ -139,7 +141,9 @@ public class CatalogoController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Catalogo)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.catalogo = null;
+                this.cargarTablaCatalogo();
             } catch (IOException ex) {
                 Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -150,7 +154,7 @@ public class CatalogoController implements Initializable {
             alert.setContentText("Debe seleccionar un Catalogo...");
             alert.showAndWait();
         }
-        this.cargarTablaCatalogo();
+        
     }
 
     @FXML
@@ -313,11 +317,13 @@ public class CatalogoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Rol)");
             stage.setResizable(false);
-            stage.show();
+            stage.showAndWait();
+            this.rol = null;
+            this.cargarTablaRol();
         } catch (IOException ex) {
             Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTablaRol();
+        
     }
 
     @FXML
@@ -337,7 +343,9 @@ public class CatalogoController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Rol)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.rol = null;
+                this.cargarTablaRol();
             } catch (IOException ex) {
                 Logger.getLogger(CatalogoController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -348,7 +356,7 @@ public class CatalogoController implements Initializable {
             alert.setContentText("Debe seleccionar un Rol...");
             alert.showAndWait();
         }
-        this.cargarTablaRol();
+        
     }
 
     @FXML

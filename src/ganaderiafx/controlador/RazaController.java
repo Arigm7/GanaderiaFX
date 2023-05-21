@@ -117,7 +117,9 @@ public class RazaController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Raza)");
             stage.setResizable(false);
-            stage.show();
+            stage.showAndWait();
+            this.cargarTabla();
+            this.raza = null;
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -142,7 +144,9 @@ public class RazaController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Raza)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.cargarTabla();
+                this.raza = null;
             } catch (IOException ex) {
                 Logger.getLogger(RazaController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -45,8 +45,6 @@ public class EgresoHistorialController implements Initializable {
     @FXML
     private TableView<Egreso> tbl_egreso;
     @FXML
-    private TableColumn<Egreso, Integer> tcl_idEgreso;
-    @FXML
     private TableColumn<Egreso, String> tcl_motivoEgreso;
     @FXML
     private TableColumn<Egreso, String> tcl_observacionesEgreso;
@@ -95,7 +93,7 @@ public class EgresoHistorialController implements Initializable {
 
         List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
 
-        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+        
         tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
@@ -133,7 +131,7 @@ public class EgresoHistorialController implements Initializable {
 
         List<Egreso> listaEgreso = gson.fromJson(respuesta, token.getType());
 
-        tcl_idEgreso.setCellValueFactory(new PropertyValueFactory<>("idEgreso"));
+        
         tcl_motivoEgreso.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         tcl_observacionesEgreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionEgreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));

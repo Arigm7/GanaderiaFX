@@ -56,7 +56,6 @@
       </Pane>
       <TableView fx:id="tbl_egreso" layoutX="-1.0" layoutY="111.0" onMouseClicked="#clickTableEgreso" prefHeight="488.0" prefWidth="880.0">
          <columns>
-            <TableColumn fx:id="tcl_idEgreso" prefWidth="75.0" text="Id Egreso" />
             <TableColumn fx:id="tcl_motivoEgreso" prefWidth="126.0" text="Motivo" />
             <TableColumn fx:id="tcl_observacionesEgreso" prefWidth="160.0" text="Obsercaciones" />
             <TableColumn fx:id="tcl_fechaCreacionEgreso" prefWidth="134.33334350585938" text="Fecha de creación" />

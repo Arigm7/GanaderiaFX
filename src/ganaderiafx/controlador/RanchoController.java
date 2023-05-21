@@ -48,8 +48,6 @@ public class RanchoController implements Initializable {
     @FXML
     private TableView<Rancho> tbl_rancho;
     @FXML
-    private TableColumn<Rancho, Integer> tcl_idRancho;
-    @FXML
     private TableColumn<Rancho, String> tcl_nombreRancho;
     @FXML
     private TableColumn<Rancho, String> tcl_coloniaRacho;
@@ -117,11 +115,12 @@ public class RanchoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Rancho)");
             stage.setResizable(false);
-            stage.show();  
+            stage.showAndWait();
+            this.rancho = null;
+            this.cargarTabla();
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTabla();
     }
 
     @FXML
@@ -141,7 +140,9 @@ public class RanchoController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Rancho)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.rancho = null;
+                this.cargarTabla();
             } catch (IOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -152,7 +153,7 @@ public class RanchoController implements Initializable {
             alert.setContentText("Debe seleccionar un Rancho...");
             alert.showAndWait();
         }
-         this.cargarTabla();
+         
     }
 
     @FXML
@@ -302,7 +303,7 @@ public class RanchoController implements Initializable {
     private void buscarRancho(ActionEvent event) {
         
         String buscar = this.txt_buscarRancho.getText();
-        System.out.println("AHHH BUSVAR"+buscar);
+        
         String respuesta = "";
         tbl_rancho.getItems().clear();
 
@@ -314,7 +315,7 @@ public class RanchoController implements Initializable {
 
         List<Rancho> listaR = gson.fromJson(respuesta, token.getType());
         
-        tcl_idRancho.setCellValueFactory(new PropertyValueFactory<>("idRancho"));
+        
         tcl_nombreRancho.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcl_coloniaRacho.setCellValueFactory(new PropertyValueFactory<>("colonia"));
         tcl_calleRancho.setCellValueFactory(new PropertyValueFactory<>("calle"));
@@ -345,7 +346,7 @@ public class RanchoController implements Initializable {
 
         List<Rancho> listaRancho = gson.fromJson(respuesta, token.getType());
         
-        tcl_idRancho.setCellValueFactory(new PropertyValueFactory<>("idRancho"));
+        
         tcl_nombreRancho.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcl_coloniaRacho.setCellValueFactory(new PropertyValueFactory<>("colonia"));
         tcl_calleRancho.setCellValueFactory(new PropertyValueFactory<>("calle"));

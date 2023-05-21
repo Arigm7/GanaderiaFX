@@ -46,8 +46,6 @@ public class IngresoHistorialController implements Initializable {
     @FXML
     private TableView<Ingreso> tbl_ingresos;
     @FXML
-    private TableColumn<Ingreso, Integer> tcl_idIngreso;
-    @FXML
     private TableColumn<Ingreso, Integer> tcl_cantidadIngreso;
     @FXML
     private TableColumn<Ingreso, String> tcl_observacionesIngreso;
@@ -98,7 +96,7 @@ public class IngresoHistorialController implements Initializable {
         
         //System.out.println("A VER "+listaIngreso);
         
-        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+       
         tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
@@ -140,7 +138,7 @@ public class IngresoHistorialController implements Initializable {
 
         List<Ingreso> listaIngreso = gson.fromJson(respuesta, token.getType());
         
-        tcl_idIngreso.setCellValueFactory(new PropertyValueFactory<>("idIngreso"));
+        
         tcl_cantidadIngreso.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         tcl_observacionesIngreso.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
         tcl_fechaCreacionIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));

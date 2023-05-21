@@ -58,8 +58,6 @@ public class UsuarioController implements Initializable {
     @FXML
     private TableView<Usuario> tbl_usuario;
     @FXML
-    private TableColumn<Usuario, Integer> tcl_idUsuario;
-    @FXML
     private TableColumn<Usuario, String> tcl_nombreUsuario;
     @FXML
     private TableColumn<Usuario, String> tcl_apellidoPaterno;
@@ -102,7 +100,7 @@ public class UsuarioController implements Initializable {
 
         List<Usuario> listaUsuario = gson.fromJson(respuesta, token.getType());
               
-        tcl_idUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+        
         tcl_nombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcl_apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
         tcl_apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
@@ -139,12 +137,13 @@ public class UsuarioController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("GANADERIA (Registrar Usuario)");
             stage.setResizable(false);
-            stage.show();  
+            stage.showAndWait();
+            this.cargarTabla();
+            this.usuario = null;
         } catch (IOException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.cargarTabla();
-        this.usuario=null;
+        
     }
 
     @FXML
@@ -164,7 +163,9 @@ public class UsuarioController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("GANADERIA (Editar Usuario)");
                 stage.setResizable(false);
-                stage.show();
+                stage.showAndWait();
+                this.cargarTabla();
+                this.usuario = null;
             } catch (IOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -175,8 +176,7 @@ public class UsuarioController implements Initializable {
             alert.setContentText("Debe seleccionar un Usuario...");
             alert.showAndWait();
         }
-         this.cargarTabla();
-         this.usuario=null;
+         
     }
 
     @FXML
@@ -331,7 +331,7 @@ public class UsuarioController implements Initializable {
 
         List<Usuario> listaUsuario = gson.fromJson(respuesta, token.getType());
         
-        tcl_idUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+        
         tcl_nombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcl_apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
         tcl_apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));

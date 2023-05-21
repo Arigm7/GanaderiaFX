@@ -122,7 +122,7 @@ public class RegistrarRanchoController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("El rancho ya esta registrado...");
+                    alert.setContentText("El nombre del rancho ya esta registrado...");
                     alert.showAndWait();
                 }
             } catch (JSONException ex) {   
